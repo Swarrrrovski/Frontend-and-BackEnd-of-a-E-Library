@@ -7,8 +7,8 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     const errorMessage = document.getElementById("error-message");
 
     const credentials = {
-        admin: { username: "admin", password: "admin123" },
-        user: { username: "user", password: "user123" }
+        
+        admin: { username: "admin", password: "admin123" }
     };
 
     if (!role) {
@@ -22,10 +22,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         alert(`Welcome, ${role}!`);
         
         if (role === "admin") {
-            window.location.href = "admin-dashboard.html"; 
-         }
-         else {
-            window.location.href = "user-dashboard.html";
+            window.location.href = "admin-dashboard.html";
         }
     } else {
         errorMessage.textContent = "Invalid username or password!";

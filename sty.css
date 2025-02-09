@@ -2,11 +2,11 @@
 {
 	height: 660px;
 	width: 1350px;
-	/*background-color: red;*/
+	background-color: rgb(11, 1, 1);
 }
 header
 {
-	height: 130px;
+	height: 140px;
 	width: 1340px;
 	background-color: black;
 	padding: 10px;
@@ -20,19 +20,19 @@ section
 }
 footer
 {
-	
+	height:100px;
 	width: 1361px;
 	background-color: black;
 }
 .logo
 {
 	float :left;
-	padding-left: 20px;
+	padding-left: 50px;
 
 }
 .logo img 
 {
-	width: 100px; 
+	width: 180px; 
     height: auto; 
     padding-left: 80px; 
 }
@@ -42,7 +42,7 @@ li a
 	color: white;
 	text-decoration: none;
 }
-/*nav
+nav
 {
 	float: right;
 	word-spacing: 30px;
@@ -58,14 +58,22 @@ section .sec_img
 {
 	height: 550px;
 	margin-top: 0px;
-	background-image: url("images/1.jpg");
+	
 }
 .box
 {
-	height: 300px;
+	height: 400px;
 	width: 450px;
 	background-color: #030002;
 	margin: 70px auto;
 	opacity: .6;
-	color: white;
+	color: rgb(249, 249, 249);
+}
+section{
+	background-image: url("Images/2.jpg");
+	background-size: cover;
+}
+.background-image
+{
+	height: 1000 px ;
 }
