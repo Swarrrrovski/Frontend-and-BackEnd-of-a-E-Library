@@ -12,6 +12,7 @@ body {
     margin: 0;
     position: relative;
     overflow: hidden;
+    background-image: url("Images/4.jpg");
 }
 
 .login-container {
