@@ -32,7 +32,9 @@ footer
 }
 .logo img 
 {
-	padding-left: 80px;
+	width: 100px; 
+    height: auto; 
+    padding-left: 80px; 
 }
 
 li a
