@@ -1,3 +1,6 @@
+<?php
+include "connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +11,8 @@
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
+    <form name = "Register" action="" method="post">
     <div class="role-selection">
-    <form name ="Register" action = "" method="post">
         <h1>Register</h1>
         <button class="role-btn" onclick="selectRole('Admin')">Admin</button>
         <button class="role-btn" onclick="selectRole('User')">User</button>
@@ -50,8 +53,7 @@
             <button type="submit">Register</button>
         </form>
         <p id="error-message" class="error-message"></p>
-       
-
+        <p>Already registered? <a href="login.php">Login</a></p>
     </div>
 
     <script src="register.js"></script>
