@@ -53,7 +53,7 @@ include "connection.php";
                 <label for="confirmPassword">Confirm Password:</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required>
             </div>
-            <button type="submit">Register</button>
+            <button type="submit" name="registerBtn">Register</button>
         </form>
 
         <p id="error-message" class="error-message"></p>
@@ -71,7 +71,7 @@ include "connection.php";
     </script>
      <?php
 
-if(isset($_POST['submit']))
+if(isset($_POST['registerBtn']))
 {
   $count=0;
 
@@ -87,7 +87,7 @@ if(isset($_POST['submit']))
   }
   if($count==0)
   {
-    mysqli_query($db,"INSERT INTO `STUDENT` VALUES('$_POST[first]', '$_POST[last]', '$_POST[username]', '$_POST[password]', '$_POST[roll]', '$_POST[email]', '$_POST[contact]', 'p.jpg');");
+    mysqli_query($db,"INSERT INTO `student_register` VALUES('$_POST[fname]','$_POST[mname]', '$_POST[lname]','$_POST[email]', '$_POST[username]', '$_POST[password]', '$_POST[confirmPassword]');");
   ?>
     <script type="text/javascript">
      alert("Registration successful");
