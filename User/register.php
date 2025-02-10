@@ -8,11 +8,14 @@ include "connection.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vault-Registration</title>
     <link rel="stylesheet" href="register.css">
+    
+
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
-    <form name = "Register" action="" method="post">
+<form name = "register" action="" method="post">
     <div class="role-selection">
+    <form name = "Register" action="" method="post">
         <h1>Register</h1>
         <button class="role-btn" onclick="selectRole('Admin')">Admin</button>
         <button class="role-btn" onclick="selectRole('User')">User</button>
