@@ -7,19 +7,19 @@ include "connection.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vault - Registration</title>
-    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="admin_register.css">
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
 
     <div class="role-selection">
         <h1>Register</h1>
-        <!-- Buttons for role selection -->
+        
         <button class="role-btn" type="button" onclick="selectRole('Admin')">Admin</button>
         <button class="role-btn" type="button" onclick="selectRole('User')">User</button>
     </div>
 
-    <!-- Registration form (hidden initially) -->
+    
     <div class="registration-container" id="registrationContainer" style="display: none;">
         <h1>Vault Registration</h1>
         <p id="selectedRoleText"></p>
@@ -60,10 +60,9 @@ include "connection.php";
         <p>Already registered? <a href="login.php">Login</a></p>
     </div>
 
-    <script src="User/register.js"></script>
+    <script src="admin_register.js"></script>
 
     <script>
-        // JavaScript to handle role selection and show the form
         function selectRole(role) {
             document.getElementById('selectedRoleText').textContent = 'Selected Role: ' + role;
             document.getElementById('registrationContainer').style.display = 'block';
@@ -72,7 +71,7 @@ include "connection.php";
 
 <?php
 if (isset($_POST['registerBtn'])) {
-    // Fetch form data
+   
     $fname = $_POST['fname'];
     $mname = $_POST['mname'];
     $lname = $_POST['lname'];
@@ -82,7 +81,7 @@ if (isset($_POST['registerBtn'])) {
     $confirmPassword = $_POST['confirmPassword'];
 
     
-    $sql = "SELECT username FROM `student_register` WHERE username='$username'";
+    $sql = "SELECT username FROM `admin_register` WHERE username='$username'";
     $res = mysqli_query($db, $sql);
 
     if (!$res) {
@@ -99,7 +98,7 @@ if (isset($_POST['registerBtn'])) {
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
             
-            $insertQuery = "INSERT INTO `student_register` (fname, mname, lname, email, username, password)
+            $insertQuery = "INSERT INTO `admin_register` (fname, mname, lname, email, username, password)
                             VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$hashedPassword')";
             
             if (mysqli_query($db, $insertQuery)) {
