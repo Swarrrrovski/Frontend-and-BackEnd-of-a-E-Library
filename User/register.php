@@ -63,50 +63,50 @@ include "connection.php";
     <script src="User/register.js"></script>
 
     <script>
-        
+        // JavaScript to handle role selection and show the form
         function selectRole(role) {
             document.getElementById('selectedRoleText').textContent = 'Selected Role: ' + role;
             document.getElementById('registrationContainer').style.display = 'block';
         }
     </script>
-     <?php
 
-if(isset($_POST['registerBtn']))
-{
-  $count=0;
+<?php
+if (isset($_POST['registerBtn'])) {
+    // Fetch form data
+    $fname = $_POST['fname'];
+    $mname = $_POST['mname'];
+    $lname = $_POST['lname'];
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
 
-  $sql="SELECT username from `student`";
-  $res=mysqli_query($db,$sql);
+    // Check if username already exists
+    $sql = "SELECT username FROM `student` WHERE username='$username'";
+    $res = mysqli_query($db, $sql);
+    $count = mysqli_num_rows($res);
 
-  while($row=mysqli_fetch_assoc($res))
-  {
-    if($row['username']==$_POST['username'])
-    {
-      $count=$count+1;
+    if ($count == 0) {
+        if ($password === $confirmPassword) {
+            // Hash the password for security
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            // Insert data into the student_register table
+            $insertQuery = "INSERT INTO `student_register` (fname, mname, lname, email, username, password)
+                            VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$hashedPassword')";
+            
+            if (mysqli_query($db, $insertQuery)) {
+                echo "<script type='text/javascript'>alert('Registration successful');</script>";
+            } else {
+                echo "<script type='text/javascript'>alert('Error: Could not register. Please try again.');</script>";
+            }
+        } else {
+            echo "<script type='text/javascript'>alert('Passwords do not match.');</script>";
+        }
+    } else {
+        echo "<script type='text/javascript'>alert('The username already exists.');</script>";
     }
-  }
-  if($count==0)
-  {
-    mysqli_query($db,"INSERT INTO `student_register` VALUES('$_POST[fname]','$_POST[mname]', '$_POST[lname]','$_POST[email]', '$_POST[username]', '$_POST[password]', '$_POST[confirmPassword]');");
-  ?>
-    <script type="text/javascript">
-     alert("Registration successful");
-    </script>
-  <?php
-  }
-  else
-  {
-
-    ?>
-      <script type="text/javascript">
-        alert("The username already exist.");
-      </script>
-    <?php
-
-  }
-
 }
-
 ?>
 </body>
 </html>
