@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vault - Login</title>
-    <link rel="stylesheet" href="user_login.css">
+    <link rel="stylesheet" href="admin_login.css">
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
@@ -30,7 +30,7 @@
             <button type="submit">Login</button>
         </form>
         <p id="error-message" class="error-message"></p>
-        <p>Not registered yet? <a href="register.php">Register Now</a></p>
+        <p>Not registered yet? <a href="admin_register.php">Register Now</a></p>
     </div>
     <script src="admin_login.js"></script>
     
