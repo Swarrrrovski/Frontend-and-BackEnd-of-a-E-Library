@@ -67,6 +67,6 @@ function validateForm(event) {
     window.location.href = "user_login.html";
     return true;
 }
-
+window.location.href = "user_login.html";
 
 document.getElementById('registrationForm').addEventListener('submit', validateForm);
