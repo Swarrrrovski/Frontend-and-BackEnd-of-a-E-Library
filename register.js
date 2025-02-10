@@ -8,11 +8,16 @@ function validateForm() {
     var pw2 = document.getElementById("pswd2").value;
     var name1 = document.getElementById("fname").value;
     var name2 = document.getElementById("lname").value;
-    var email = document.getElementById("email").value;
+    var age = document.getElementById("age").value;
     var username = document.getElementById("username").value;
-    var ag = document.getElementById("age").value;
 
-    if (name1 == "") {
+    
+    document.getElementById("blankMsg").innerHTML = "";
+    document.getElementById("charMsg").innerHTML = "";
+    document.getElementById("message1").innerHTML = "";
+    document.getElementById("message2").innerHTML = "";
+
+    if (name1 === "") {
         document.getElementById("blankMsg").innerHTML = "**Fill the first name";
         return false;
     }
@@ -21,25 +26,28 @@ function validateForm() {
         document.getElementById("blankMsg").innerHTML = "**Only characters are allowed";
         return false;
     }
-    if (ag == "") {
+
+    if (age === "") {
         document.getElementById("blankMsg").innerHTML = "**Enter your age please";
         return false;
     }
-    if (ag< 5 && ag >150) {
+
+    if (age < 5 || age > 150) {
         document.getElementById("blankMsg").innerHTML = "**Enter a valid age";
         return false;
     }
+
     if (!isNaN(name2)) {
         document.getElementById("charMsg").innerHTML = "**Only characters are allowed";
         return false;
     }
 
-    if (pw1 == "") {
+    if (pw1 === "") {
         document.getElementById("message1").innerHTML = "**Fill the password please!";
         return false;
     }
 
-    if (pw2 == "") {
+    if (pw2 === "") {
         document.getElementById("message2").innerHTML = "**Enter the password please!";
         return false;
     }
@@ -54,15 +62,17 @@ function validateForm() {
         return false;
     }
 
-    if (pw1 != pw2) {
+    if (pw1 !== pw2) {
         document.getElementById("message2").innerHTML = "**Passwords are not the same";
         return false;
-    } else {
-       
-        localStorage.setItem("username", username);
-        localStorage.setItem("password", pw1);
-        
-        alert("Registration successful!");
-        window.location.href = "user_login.html"; 
     }
+
+    
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", pw1);
+
+    
+    alert("Registration successful!");
+    window.location.href = "user_login.html";
+    return false; 
 }
