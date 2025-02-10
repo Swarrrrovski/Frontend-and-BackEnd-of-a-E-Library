@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="role-selection">
+    <form name ="Register" action = "" method="post">
         <h1>Register</h1>
         <button class="role-btn" onclick="selectRole('Admin')">Admin</button>
         <button class="role-btn" onclick="selectRole('User')">User</button>
