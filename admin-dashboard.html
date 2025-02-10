@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vault-Admin</title>
+    <link rel="stylesheet" href="admin_dashboard.css">
+    <link rel="shortcut icon" href="book.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-  <header>
-    <h1>Admin Dashboard</h1>
-    <nav>
-      <a href="index.html">Home</a>
-    </nav>
-  </header>
-  <main>
-    <h2>Manage Books</h2>
-    <form id="add-book-form">
-      <label for="title">Title:</label>
-      <input type="text" id="title" required>
-      <label for="author">Author:</label>
-      <input type="text" id="author" required>
-      <label for="category">Category:</label>
-      <input type="text" id="category" required>
-      <button type="submit">Add Book</button>
-    </form>
-    <div id="book-list"></div>
-  </main>
-  <script src="js/script.js"></script>
+    <header>
+            <button id="menuToggle" class="menu-button"><i class="bi bi-list"></i><span class="menu-text">Menu</span></button>
+            <h1>Admin</h1>
+            <button id="themeToggle"><i class="bi bi-brightness-high-fill"></i></button>
+            <button id="logoutBtn" class="logoutBtn"><i class="bi bi-box-arrow-right"></i><span class="logout-text">Logout</span></button>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="#"><i class="bi bi-house-fill"></i>&nbsp;&nbsp;Dashboard</a></li>
+                <li><a href="#"><i class="bi bi-book-fill"></i>&nbsp;&nbsp;Manage Books</a></li>
+                <li><a href="#"><i class="bi bi-person-fill"></i>&nbsp;&nbsp;Manage Users</a></li>
+                <li><a href="#"><i class="bi bi-book-fill"></i>&nbsp;&nbsp;Borrowed Books</a></li>
+                <li><a href="#"><i class="bi bi-credit-card-fill"></i>&nbsp;&nbsp;Due Payments</a></li>
+                <li><a href="#"><i class="bi bi-star-fill"></i>&nbsp;&nbsp;Recommendations</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2>Welcome Back !</h2>
+
+            <section class="borrowed-books">
+                <h3>Borrowed Books</h3>
+                <ul id="bookList"></ul>
+            </section>
+
+            <section class="purchased-books">
+                <h3>Purchased Books</h3>
+                <ul id="purchasedList"></ul>
+            </section>
+
+            <section class="due-payments">
+                <h3>Due Payments</h3>
+                <ul id="duePayments"></ul>
+            </section>
+
+            <section class="subscription">
+                <h3>Subscription Status</h3>
+                <p id="subscriptionStatus"></p>
+            </section>
+
+            <section class="recommendations">
+                <h3>Recommended Books</h3>
+                <ul id="recommendedBooks"></ul>
+            </section>
+        </div>
+    </div>
+
+    <script src="admin_dashboard.js"></script>
 </body>
 </html>

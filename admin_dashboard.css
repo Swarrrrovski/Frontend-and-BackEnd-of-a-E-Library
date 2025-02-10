@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Poppins:wght@400;500&display=swap');
+:root {
+    --base-color: white;
+    --base-variant: #e8e9ed;
+    --text-color: #111528;
+    --primary-color: #3a435d;
+    --secondary-text: #232738;
+    --accent-color: #0071ff;
+    --header-bg: #007bff;
+    --sidebar-bg: #DBE7FF;
+    --hover-bg: #abc8fc;
+}
+
+.dark-mode {
+    --base-color:black;
+    --base-variant:#444;
+    --text-color: #ffffff;
+    --primary-color: #3a435d;
+    --secondary-text: #a4a5b8;
+    --accent-color: #0071ff;
+    --header-bg: #007bff;
+    --sidebar-bg: #444;
+    --hover-bg: #5a5959;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--base-color);
+    color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+header h1 {
+    font-size: 30px;
+    font-family: "Montserrat", serif;
+    text-shadow: 4px 4px 4px black;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-button, .logoutBtn {
+    font-size: 20px;
+    background: none;
+    border: none;
+    padding: 0;
+    padding-right: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-text, .logout-text {
+    font-size: 18px;
+    color: var(--text-color);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+}
+
+#themeToggle {
+    background: var(--button-bg);
+    border: none;
+    padding: 8px;
+    margin-right:30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    background-color: var(--sidebar-bg);
+    width: 250px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 20px;
+    border-radius: 15px;
+    height: 75vh;
+    margin:20px auto ;
+    margin-left: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+    background-color: var(--hover-bg);
+}
+
+.content {
+    flex: 1;
+    margin-left: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+    background: var(--base-variant);
+    padding: 15px;
+    border-radius: 5px;
+}
+.borrowed-books , .purchased-books , .due-payments, .subscription , .recommendations{
+    background: var( --sidebar-bg);
+}
+
+#bookList, #purchasedList, #duePayments, #recommendedBooks {
+    margin-top: 10px;
+}
+
+#bookList li, #purchasedList li, #duePayments li {
+    padding: 10px;
+    background-color: var(--hover-bg);
+    margin: 5px 0;
+    border-radius: 5px;
+    color: var(--text-color);
+}
