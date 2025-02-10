@@ -82,8 +82,15 @@ if (isset($_POST['registerBtn'])) {
     $confirmPassword = $_POST['confirmPassword'];
 
     // Check if username already exists
-    $sql = "SELECT username FROM `student` WHERE username='$username'";
+    $sql = "SELECT username FROM `student_register` WHERE username='$username'";
     $res = mysqli_query($db, $sql);
+
+    if (!$res) {
+        // Output error message if the query fails
+        echo "Error: " . mysqli_error($db);
+        exit();  // Stop further execution if the query fails
+    }
+
     $count = mysqli_num_rows($res);
 
     if ($count == 0) {
@@ -98,7 +105,8 @@ if (isset($_POST['registerBtn'])) {
             if (mysqli_query($db, $insertQuery)) {
                 echo "<script type='text/javascript'>alert('Registration successful');</script>";
             } else {
-                echo "<script type='text/javascript'>alert('Error: Could not register. Please try again.');</script>";
+                // Output error if the insert query fails
+                echo "Error: " . mysqli_error($db);
             }
         } else {
             echo "<script type='text/javascript'>alert('Passwords do not match.');</script>";
@@ -108,5 +116,6 @@ if (isset($_POST['registerBtn'])) {
     }
 }
 ?>
+
 </body>
 </html>
