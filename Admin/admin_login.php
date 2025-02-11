@@ -1,5 +1,5 @@
 <?php
-include "connection.php"; // Ensure the connection is correct
+include "connection.php"; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,29 +39,29 @@ include "connection.php"; // Ensure the connection is correct
     
     <?php
     if (isset($_POST['login'])) {
-        // Sanitize inputs to avoid SQL injection
+        
         $username = mysqli_real_escape_string($db, $_POST['username']);
         $password = mysqli_real_escape_string($db, $_POST['password']);
         
-        // Query to check username and password
+        
         $query = "SELECT * FROM `admin_register` WHERE username='$username' AND password='$password'";
         $res = mysqli_query($db, $query);
         
-        // Check if query ran successfully
+        
         if ($res === false) {
-            // Display query error (for development purposes, should be logged instead in production)
+            
             echo "Query error: " . mysqli_error($db);
         } else {
             $count = mysqli_num_rows($res);
             if ($count > 0) {
-                // If login is successful, redirect to ind.php
+                
                 ?>
                 <script type="text/javascript">
                     window.location.href = "ind.php";
                 </script>
                 <?php
             } else {
-                // If login fails, display error message
+                
                 ?>
                 <div class="alert alert-danger" style="width: 600px; margin-left: 370px; background-color: #de1313; color: white">
                     <strong>The username and password don't match</strong>
