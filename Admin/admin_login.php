@@ -18,7 +18,7 @@ include "connection.php";
                 <label for="role">Login as:</label>
                 <select id="role" name="role" required>
                     <option value="" disabled selected>Select Role</option>
-                    <option value="user">User</option>
+                    <option value="user">Admin</option>
                     
                 </select>
             </div>
@@ -30,7 +30,7 @@ include "connection.php";
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Enter Password" required>
             </div>
-            <button type="submit">Login</button>
+           
             <button type="submit" name="login">Login</button>
         </form>
         <p id="error-message" class="error-message"></p>
@@ -63,7 +63,7 @@ include "connection.php";
 
         ?>
           <script type="text/javascript">
-            window.location ="admin_dashboard.php"
+            window.location ="ind.php"
           </script>
         <?php
       }
