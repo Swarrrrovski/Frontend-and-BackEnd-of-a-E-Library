@@ -69,7 +69,7 @@ include "connection.php";
         }
     </script>
 
-<?php
+<?php 
 if (isset($_POST['registerBtn'])) {
    
     $fname = $_POST['fname'];
@@ -77,15 +77,15 @@ if (isset($_POST['registerBtn'])) {
     $lname = $_POST['lname'];
     $email = $_POST['email'];
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = $_POST['password'];  // Plain text password
     $confirmPassword = $_POST['confirmPassword'];
 
-    
+    // Check if username already exists
     $sql = "SELECT username FROM `admin_register` WHERE username='$username'";
     $res = mysqli_query($db, $sql);
 
     if (!$res) {
-        
+        // Handle query error
         echo "Error: " . mysqli_error($db);
         exit(); 
     }
@@ -94,17 +94,14 @@ if (isset($_POST['registerBtn'])) {
 
     if ($count == 0) {
         if ($password === $confirmPassword) {
-            
-            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-            
+            // Insert user into the database without hashing the password
             $insertQuery = "INSERT INTO `admin_register` (fname, mname, lname, email, username, password)
-                            VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$hashedPassword')";
+                            VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$password')";
             
             if (mysqli_query($db, $insertQuery)) {
                 echo "<script type='text/javascript'>alert('Registration successful');</script>";
             } else {
-                
+                // Handle insertion error
                 echo "Error: " . mysqli_error($db);
             }
         } else {
