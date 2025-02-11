@@ -57,7 +57,7 @@ include "connection.php";
         </form>
 
         <p id="error-message" class="error-message"></p>
-        <p>Already registered? <a href="login.php">Login</a></p>
+        <p>Already registered? <a href="admin_login.php">Login</a></p>
     </div>
 
     <script src="admin_register.js"></script>
