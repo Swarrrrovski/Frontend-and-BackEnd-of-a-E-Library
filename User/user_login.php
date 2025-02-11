@@ -11,14 +11,7 @@
     <div class="login-container">
         <h1>Vault Student</h1>
         <form id="loginForm">
-            <div class="form-group">
-                <label for="role">Login as:</label>
-                <select id="role" name="role" required>
-                    <option value="" disabled selected>Select Role</option>
-                    <option value="user">User</option>
-                    
-                </select>
-            </div>
+            
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Enter Username" required>
