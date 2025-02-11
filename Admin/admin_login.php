@@ -58,12 +58,9 @@ include "connection.php";
       }
       else
       {
-        $_SESSION['login_user'] = $_POST['username'];
-        $_SESSION['pic']= $row['pic'];
-
         ?>
           <script type="text/javascript">
-            window.location ="ind.php"
+            window.location.href="ind.php"
           </script>
         <?php
       }
