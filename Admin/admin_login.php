@@ -7,7 +7,7 @@ include "connection.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vault - Login</title>
-    <link rel="stylesheet" href="user_login.css">
+    <link rel="stylesheet" href="admin_login.css">
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
@@ -44,10 +44,10 @@ include "connection.php";
             ?>
         </p>
         
-        <p>Not registered yet? <a href="register.php">Register Now</a></p>
+        <p>Not registered yet? <a href="admin_register.php">Register Now</a></p>
     </div>
 
-    <script src="user_login.js"></script>
+    <script src="admin_login.js"></script>
 
     <?php
     if (isset($_POST['login'])) {
@@ -56,7 +56,7 @@ include "connection.php";
         $password = mysqli_real_escape_string($db, $_POST['password']);
         
         // Query to check the username and password
-        $query = "SELECT * FROM `student_register` WHERE username='$username' AND password='$password'";
+        $query = "SELECT * FROM `admin_register` WHERE username='$username' AND password='$password'";
         $res = mysqli_query($db, $query);
         
         if ($res === false) {
