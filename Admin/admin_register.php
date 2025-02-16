@@ -77,15 +77,15 @@ if (isset($_POST['registerBtn'])) {
     $lname = $_POST['lname'];
     $email = $_POST['email'];
     $username = $_POST['username'];
-    $password = $_POST['password'];  // Plain text password
+    $password = $_POST['password'];  
     $confirmPassword = $_POST['confirmPassword'];
 
-    // Check if username already exists
+    
     $sql = "SELECT username FROM `admin_register` WHERE username='$username'";
     $res = mysqli_query($db, $sql);
 
     if (!$res) {
-        // Handle query error
+        
         echo "Error: " . mysqli_error($db);
         exit(); 
     }
