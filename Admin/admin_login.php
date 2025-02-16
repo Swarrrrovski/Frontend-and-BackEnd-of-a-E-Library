@@ -1,5 +1,6 @@
 <?php 
 include "connection.php"; 
+session_start(); // Start the session for maintaining login state
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +13,8 @@ include "connection.php";
 </head>
 <body>
     <div class="login-container">
-        <h1>Vault Student</h1>
-        <form id="loginForm" action="" method="post">
+        <h1>Vault Admin</h1>
+        <form id="loginForm" action="admin_login.php" method="post">
             <div class="form-group">
                 <label for="role">Login as:</label>
                 <select id="role" name="role" required>
@@ -50,33 +51,48 @@ include "connection.php";
     <script src="admin_login.js"></script>
 
     <?php
-    if (isset($_POST['login'])) {
-        
-        $username = mysqli_real_escape_string($db, $_POST['username']);
-        $password = mysqli_real_escape_string($db, $_POST['password']);
-        
-        // Query to check the username and password
-        $query = "SELECT * FROM `admin_register` WHERE username='$username' AND password='$password'";
+if (isset($_POST['login'])) {
+    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $role = mysqli_real_escape_string($db, $_POST['role']); // Get the role
+
+    // Validate role
+    if ($role == 'admin' || $role == 'user') {
+        // Query to check the username
+        $query = "SELECT * FROM admin_register WHERE username='$username'";
         $res = mysqli_query($db, $query);
-        
+
         if ($res === false) {
             // Query error
             echo "Query error: " . mysqli_error($db);
         } else {
             $count = mysqli_num_rows($res);
             if ($count > 0) {
-                // If match found, redirect to ind.php
-                ?>
-                <script type="text/javascript">
-                window.location.href = "ind.php";
-                </script>
-                <?php
+                $row = mysqli_fetch_assoc($res);
+                
+                // Check if passwords are hashed in the database
+                if (password_verify($password, $row['password'])) {
+                    // If password matches, set the session and redirect
+                    $_SESSION['username'] = $username;
+                    ?>
+                    <script type="text/javascript">
+                    window.location.href = "ind.php";
+                    </script>
+                    <?php
+                } else {
+                    // If password doesn't match, set error message
+                    $error_message = "The username and password don't match.";
+                }
             } else {
-                // If no match, set error message
+                // If username doesn't exist, set error message
                 $error_message = "The username and password don't match.";
             }
         }
+    } else {
+        $error_message = "Please select a valid role.";
     }
-    ?>
+}
+?>
+
 </body>
 </html>

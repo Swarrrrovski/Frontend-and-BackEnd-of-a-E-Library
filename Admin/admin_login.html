@@ -10,7 +10,7 @@
 <body>
     <div class="login-container">
         <h1>Vault Student</h1>
-        <form id="loginForm" action="" method="post">
+        <form id="loginForm" action="admin_login.php" method="post">
             <div class="form-group">
                 <label for="role">Login as:</label>
                 <select id="role" name="role" required>
@@ -31,16 +31,19 @@
             <button type="submit" name="login">Login</button>
         </form>
         
-        
+        <!-- Error message placeholder -->
         <p id="error-message" class="error-message">
-           
-        
+            <?php
+            // This will display the error message returned from the PHP file if the login fails
+            if (isset($error_message)) {
+                echo $error_message;
+            }
+            ?>
+        </p>
         
         <p>Not registered yet? <a href="admin_register.php">Register Now</a></p>
     </div>
 
     <script src="admin_login.js"></script>
-
-   
 </body>
 </html>
