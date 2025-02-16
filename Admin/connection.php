@@ -1,6 +1,6 @@
 <?php
 
-	$db=mysqli_connect("localhost","root","","vault_library_management");  
+	$db =mysqli_connect("localhost","root","","vault_library_management");  
     
     if (!$db)
     {
