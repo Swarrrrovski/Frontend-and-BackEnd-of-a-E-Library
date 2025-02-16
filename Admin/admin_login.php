@@ -1,6 +1,6 @@
 <?php 
 include "connection.php"; 
-session_start(); // Start the session for maintaining login state
+session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,64 +35,53 @@ session_start(); // Start the session for maintaining login state
             <button type="submit" name="login">Login</button>
         </form>
         
-        <!-- Error message placeholder -->
         <p id="error-message" class="error-message">
             <?php
-            // Display error message from PHP if exists
+            // Display error message if any
             if (isset($error_message)) {
                 echo $error_message;
             }
             ?>
         </p>
-        
+
         <p>Not registered yet? <a href="admin_register.php">Register Now</a></p>
     </div>
-
-    <script src="admin_login.js"></script>
 
     <?php
 if (isset($_POST['login'])) {
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
-    $role = mysqli_real_escape_string($db, $_POST['role']); // Get the role
 
-    // Validate role
-    if ($role == 'admin' || $role == 'user') {
-        // Query to check the username
-        $query = "SELECT * FROM admin_register WHERE username='$username'";
-        $res = mysqli_query($db, $query);
+    // Ensure correct table name with backticks
+    $query = "SELECT * FROM `admin_register` WHERE username='$username'";
+    $res = mysqli_query($db, $query);
 
-        if ($res === false) {
-            // Query error
-            echo "Query error: " . mysqli_error($db);
-        } else {
-            $count = mysqli_num_rows($res);
-            if ($count > 0) {
-                $row = mysqli_fetch_assoc($res);
-                
-                // Check if passwords are hashed in the database
-                if (password_verify($password, $row['password'])) {
-                    // If password matches, set the session and redirect
-                    $_SESSION['username'] = $username;
-                    ?>
-                    <script type="text/javascript">
-                    window.location.href = "ind.php";
-                    </script>
-                    <?php
-                } else {
-                    // If password doesn't match, set error message
-                    $error_message = "The username and password don't match.";
-                }
-            } else {
-                // If username doesn't exist, set error message
-                $error_message = "The username and password don't match.";
-            }
-        }
+    if ($res === false) {
+        // SQL query error
+        echo "Query error: " . mysqli_error($db);
     } else {
-        $error_message = "Please select a valid role.";
+        $count = mysqli_num_rows($res);
+        if ($count > 0) {
+            $row = mysqli_fetch_assoc($res);
+            
+            // Verify password using hash
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['username'] = $username;
+                ?>
+                <script type="text/javascript">
+                window.location.href = "ind.php";
+                </script>
+                <?php
+            } else {
+                // Incorrect password
+                $error_message = "Invalid username or password.";
+            }
+        } else {
+            // Username does not exist
+            $error_message = "Invalid username or password.";
+        }
     }
 }
 ?>
-
 </body>
 </html>
