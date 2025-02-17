@@ -53,7 +53,7 @@ include "connection.php";
                 
                 ?>
                 <script type="text/javascript">
-                window.location.href = "ind.php";
+                window.location.href = "user_dashboard.php";
                 </script>
                 <?php
             } else {

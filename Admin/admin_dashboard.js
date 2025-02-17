@@ -44,7 +44,7 @@ const borrowedBooks = [
 const bookList = document.getElementById('bookList');
 borrowedBooks.forEach(book => {
     const li = document.createElement('li');
-    li.textContent = book.title + " by " + book.author; // Fixed here
+    li.textContent = `${book.title} by ${book.author}`;
     bookList.appendChild(li);
 });
 
@@ -56,7 +56,7 @@ const purchasedBooks = [
 const purchasedList = document.getElementById('purchasedList');
 purchasedBooks.forEach(book => {
     const li = document.createElement('li');
-    li.textContent = book.title + " by " + book.author; // Fixed here
+    li.textContent = `${book.title} by ${book.author}`;
     purchasedList.appendChild(li);
 });
 
@@ -68,14 +68,14 @@ const duePayments = [
 const duePaymentsList = document.getElementById('duePayments');
 duePayments.forEach(payment => {
     const li = document.createElement('li');
-    li.textContent = "Amount: " + payment.amount + ", Due Date: " + payment.dueDate; // Fixed here
+    li.textContent = `Amount: ${payment.amount}, Due Date: ${payment.dueDate}`;
     duePaymentsList.appendChild(li);
 });
 
 const subscriptionExpiry = "March 15, 2025";
-document.getElementById('subscriptionStatus').textContent = "Your subscription expires on: " + subscriptionExpiry; // Fixed here
+document.getElementById('subscriptionStatus').textContent = `Your subscription expires on: ${subscriptionExpiry}`;
 
 function logout() {
     alert("Logging out...");
-    window.location.href = "login.html";
+    window.location.href = "admin_login.html";
 }

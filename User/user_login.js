@@ -1,25 +1,21 @@
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault(); 
     
-    
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
     const errorMessage = document.getElementById("error-message");
 
     const credentials = {
-        
         user: { username: "user", password: "user123" }
     };
 
-    
-
-    if (username === credentials[role].username && password === credentials[role].password) {
+    // No need to use 'role' if you're just checking the 'user' credentials
+    if (username === credentials.user.username && password === credentials.user.password) {
         errorMessage.style.display = "none"; 
-        alert(`Welcome, ${role}!`);
+        alert("Welcome, user!");
         
-        
-            window.location.href = "user-dashboard.html";
-        
+        // Redirect to user dashboard after successful login
+        window.location.href = "user-dashboard.html";
     } else {
         errorMessage.textContent = "Invalid username or password!";
         errorMessage.style.display = "block";
