@@ -1,65 +1,70 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>
-		Online Library Management System
-	</title>
-	<link rel="stylesheet" type="text/css" href="sty.css">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style type="text/css">
-	nav
-	{
-		float: right;
-		word-spacing: 30px;
-		padding: 20px;
-	}
-	nav li 
-	{
-		display: inline-block;
-		line-height: 80px;
-	}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault. E-Library</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
-
-
 <body>
-	<div class="wrapper">
-		<header>
-		<div class="logo">
-			<img src="Images/Vault.png">
-			<h1 style="color: white;">VAULTS  ONLINE LIBRARY </h1>
-		</div>
-			<nav>
-				<ul>
-					<li><a href="index.html">HOME</a></li>
-					<li><a href="books.html">BOOKS</a></li>
-					<li><a href="User/user_login.html">USER</a></li>
-					<li><a href="Admin/admin_login.html">ADMIN</a></li>
-					<li><a href="feedback.php">FEEDBACK</a></li>
-				</ul>
-			</nav>
-		</header>
-		<section>
-			<div>
-				<br><br>
-				<div class="box">
-					<br><br><br><br>
-					<h1 style="text-align: center; font-size: 35px;">Welcome to library</h1><br>
-					<h1 style="text-align: center;font-size: 25px;">Opens at: 09:00 </h1><br>
-					<h1 style="text-align: center;font-size: 25px;">Closes at: 15:00 </h1>
-				</div>
-			</div>
-			</section>
-		<footer>
-			<br>
-			<p style="color:rgb(222, 202, 202);  text-align: center; ">
-				Email: Vault.library@gmail.com <br>
-				Mobile: +91**********
-			</p>
-		</footer>
-	</div>
+    <header class="header">
+        <div class="logo">
+            <a href="#" class="logo-image">
+                <img src="./Images/Vault.png" alt="vault">
+            </a>
+        </div>
+        <div class="logo-name">
+            <a href="#vault">
+                <h3>E-Library</h3>
+            </a>
+            <h5>Online Learning Resources</h5>
+        </div>
+        <nav class="navbar">
+            <a href="ind.html">Home</a>
+            <a href="User/user_login.html">User</a>
+            <a href="Admin/admin_login.html">Admin</a>
+            <a href="#contact-us">Contact Us</a>
+        </nav>
+    </header>
+    
+    <section class="book-slider">
+        <h2>Recommended Books</h2>
+        <br class="spacing">
+        <br>
+        <div class="slider">
+            <div class="slide"><img src="./Images/book1.jpg" alt="Book 1"><h3>Book Title 1</h3><p>Author: Author Name 1</p></div>
+            <div class="slide"><img src="./Images/book2.jpg" alt="Book 2"><h3>Book Title 2</h3><p>Author: Author Name 2</p></div>
+            <div class="slide"><img src="./Images/book3.jpg" alt="Book 3"><h3>Book Title 3</h3><p>Author: Author Name 3</p></div>
+            <div class="slide"><img src="./Images/book4.jpg" alt="Book 4"><h3>Book Title 4</h3><p>Author: Author Name 4</p></div>
+            <div class="slide"><img src="./Images/book5.jpg" alt="Book 5"><h3>Book Title 5</h3><p>Author: Author Name 5</p></div>
+        </div>
+    </section>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                pauseOnHover: true,
+                prevArrow: '<button type="button" class="slick-prev">&#10094;</button>',
+                nextArrow: '<button type="button" class="slick-next">&#10095;</button>',
+                responsive: [
+                    { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 1 } },
+                    { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+                    { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }
+                ]
+            });
+        });
+    </script>
 </body>
-
 </html>
