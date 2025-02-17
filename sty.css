@@ -1,0 +1,149 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-color: #e4e2dd;
+    --main-color: #dad0b8;
+    --text-color: black;
+}
+
+body {
+    background: var(--main-color);
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 300px 850px 400px;
+    background: var(--bg-color);
+    box-sizing: border-box;
+    border: black solid;
+    border-width: 2px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.logo-image img {
+    width: 90%;
+}
+
+.logo {
+    background: blue;
+}
+
+.logo-name {
+    background: red;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    background: cyan;
+    display: flex;
+    flex-direction: row;
+    padding-top: 6px;
+    justify-content:center;
+    align-items: center;
+
+}
+
+.navbar a {
+    color: var(--text-color);
+    font-size: 25px;
+    align-items: center;
+    justify-content: center;
+    font-family: serif;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+.navbar a:hover {
+    color: rgb(193, 42, 193);
+}
+
+.navbar a:active {
+    color: rgb(152, 9, 90);
+}
+
+.logo-name a {
+    color: var(--text-color);
+    font-size: 55px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.logo-name h5 {
+    font-size: 30px;
+    font-weight: 200px;
+    font-family: 'Times New Roman', Times, serif;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+.logo-name
+{
+    display: flex;
+    flex-direction: column;
+    padding-left: 27px;
+}
+
+
+/* Updated CSS */
+.book-slider {
+    padding: 50px 20px;
+    background: var(--bg-color);
+    text-align: center;
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 1400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slick-prev, .slick-next {
+    background-color: black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.slick-prev {
+    left: -60px;
+}
+
+.slick-next {
+    right: -60px;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.slick-prev::before, .slick-next::before {
+    color: white;
+    font-size: 24px;
+}
+
+.spacing {
+    padding-bottom: 22px;
+}

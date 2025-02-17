@@ -99,7 +99,10 @@ if (isset($_POST['registerBtn'])) {
                             VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$password')";
             
             if (mysqli_query($db, $insertQuery)) {
-                echo "<script type='text/javascript'>alert('Registration successful');</script>";
+                echo "<script type='text/javascript'>
+            alert('Registration successful');
+            window.location.href = 'ind.php'; // Redirect to home page
+          </script>";
             } else {
                 // Handle insertion error
                 echo "Error: " . mysqli_error($db);

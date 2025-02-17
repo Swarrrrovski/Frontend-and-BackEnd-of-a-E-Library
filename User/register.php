@@ -57,7 +57,7 @@ include "connection.php";
         </form>
 
         <p id="error-message" class="error-message"></p>
-        <p>Already registered? <a href="login.php">Login</a></p>
+        
     </div>
 
     <script src="User/register.js"></script>
@@ -96,14 +96,17 @@ if (isset($_POST['registerBtn'])) {
     if ($count == 0) {
         if ($password === $confirmPassword) {
             
-            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            
 
             
             $insertQuery = "INSERT INTO `student_register` (fname, mname, lname, email, username, password)
                             VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$hashedPassword')";
             
             if (mysqli_query($db, $insertQuery)) {
-                echo "<script type='text/javascript'>alert('Registration successful');</script>";
+                echo "<script type='text/javascript'>
+            alert('Registration successful');
+            window.location.href = 'ind.php'; 
+          </script>";
             } else {
                 
                 echo "Error: " . mysqli_error($db);

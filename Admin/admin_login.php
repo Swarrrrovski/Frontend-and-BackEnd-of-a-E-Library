@@ -64,22 +64,23 @@ if (isset($_POST['login'])) {
         if ($count > 0) {
             $row = mysqli_fetch_assoc($res);
             
-            // Verify password using hash
-            if (password_verify($password, $row['password'])) {
-                $_SESSION['username'] = $username;
-                ?>
-                <script type="text/javascript">
-                window.location.href = "ind.php";
-                </script>
-                <?php
-            } else {
-                // Incorrect password
-                $error_message = "Invalid username or password.";
-            }
-        } else {
-            // Username does not exist
-            $error_message = "Invalid username or password.";
-        }
+           
+if ($password == $row['password']) {
+    $_SESSION['username'] = $username;
+    ?>
+    <script type="text/javascript">
+    window.location.href = "admin-dashboard.php";
+    </script>
+    <?php
+} else {
+    
+    $error_message = "Invalid username or password.";
+}
+} else {
+   
+    $error_message = "Invalid username or password.";
+}
+
     }
 }
 ?>
