@@ -1,22 +1,27 @@
 document.getElementById("loginForm").addEventListener("submit", function(event) {
-    // Clear any previous error message
-    const errorMessage = document.getElementById("error-message");
-    errorMessage.style.display = "none";
-
-    const role = document.getElementById("role").value;
+    event.preventDefault(); 
+    
+    
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
+    const errorMessage = document.getElementById("error-message");
 
-    if (!role) {
-        errorMessage.textContent = "Please select a role.";
-        errorMessage.style.display = "block";
-        event.preventDefault(); // Prevent form submission on error
-        return;
-    }
+    const credentials = {
+        
+        admin : { username: "admin", password: "admin123" }
+    };
 
-    if (username === "" || password === "") {
-        errorMessage.textContent = "Username and password cannot be empty.";
+    
+
+    if (username === credentials[role].username && password === credentials[role].password) {
+        errorMessage.style.display = "none"; 
+        alert(`Welcome, ${role}!`);
+        
+        
+            window.location.href = "admin-dashboard.html";
+        
+    } else {
+        errorMessage.textContent = "Invalid username or password!";
         errorMessage.style.display = "block";
-        event.preventDefault();
     }
 });

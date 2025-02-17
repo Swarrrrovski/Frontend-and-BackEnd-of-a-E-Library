@@ -6,24 +6,16 @@ include "connection.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vault - Login</title>
+    
     <link rel="stylesheet" href="user_login.css">
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
-    <div class="login-container">
-        <h1>Vault Student</h1>
+    
         <div class="login-container">
         <h1>vault</h1>
         <form id="loginForm" action="" method="post">
-            <div class="form-group">
-                <label for="role">Login as:</label>
-                <select id="role" name="role" required>
-                    <option value="" disabled selected>Select Role</option>
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                </select>
-            </div>
+            
        
             
             <div class="form-group">
