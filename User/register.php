@@ -62,14 +62,7 @@ include "connection.php";
 
     <script src="User/register.js"></script>
 
-    <script>
-        // JavaScript to handle role selection and show the form
-        function selectRole(role) {
-            document.getElementById('selectedRoleText').textContent = 'Selected Role: ' + role;
-            document.getElementById('registrationContainer').style.display = 'block';
-        }
-    </script>
-
+    
 <?php
 if (isset($_POST['registerBtn'])) {
     // Fetch form data
@@ -100,12 +93,12 @@ if (isset($_POST['registerBtn'])) {
 
             
             $insertQuery = "INSERT INTO `student_register` (fname, mname, lname, email, username, password)
-                            VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$hashedPassword')";
+                            VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$password')";
             
             if (mysqli_query($db, $insertQuery)) {
                 echo "<script type='text/javascript'>
             alert('Registration successful');
-            window.location.href = 'ind.php'; 
+            window.location.href = 'libraryphp/ind.php'; 
           </script>";
             } else {
                 

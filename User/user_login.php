@@ -1,6 +1,6 @@
 <?php
 include "connection.php"; 
-session_start()
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,53 +31,46 @@ session_start()
         </form>
         <p id="error-message" class="error-message">
         <?php
-            // Display error message if any
-            if (isset($error_message)) {
-                echo $error_message;
-            }
-            ?>
+if (isset($_SESSION['error_message'])) {
+    echo $_SESSION['error_message'];
+    unset($_SESSION['error_message']); // Clear the message after displaying it
+}
+?>
+
         </p>
         <p>Not registered yet? <a href="register.php">Register Now</a></p>
         <script src="user_login.js"></script>
     </div>
     
-
-    <?php
+<?php
     if (isset($_POST['login'])) {
-        
-        $username = mysqli_real_escape_string($db, $_POST['username']);
-        $password = mysqli_real_escape_string($db, $_POST['password']);
-        
-        
-        $query = "SELECT * FROM `student_register` WHERE username='$username'";
+    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+    
+    $query = "SELECT * FROM `student_register` WHERE username='$username'";
     $res = mysqli_query($db, $query);
 
     if ($res === false) {
         // SQL query error
-        echo "Query error: " . mysqli_error($db);
+        $_SESSION['error_message'] = "Query error: " . mysqli_error($db);
     } else {
         $count = mysqli_num_rows($res);
         if ($count > 0) {
             $row = mysqli_fetch_assoc($res);
             
-           
-if ($password == $row['password']) {
-    $_SESSION['username'] = $username;
-    ?>
-    <script type="text/javascript">
-    window.location.href = "user-dashboard.php";
-    </script>
-    <?php
-} else {
-    
-    $error_message = "Invalid username or password.";
-}
-} else {
-   
-    $error_message = "Invalid username or password.";
-}
-
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['username'] = $username;
+                header("Location: user-dashboard.php");
+                exit();
+            } else {
+                $_SESSION['error_message'] = "Invalid username or password.";
+            }
+        } else {
+            $_SESSION['error_message'] = "Invalid username or password.";
+        }
     }
+    header("Location: user_login.php");
+    exit();
 }
 ?>
 </body>
