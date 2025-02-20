@@ -1,5 +1,6 @@
 <?php
 include "connection.php"; 
+session_start()
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +14,8 @@ include "connection.php";
 <body>
     
         <div class="login-container">
-        <h1>vault</h1>
-        <form id="loginForm" action="" method="post">
+        <h1>Vault-User</h1>
+        <form id="loginForm" action="user_login.php" method="post">
             
        
             
@@ -28,10 +29,18 @@ include "connection.php";
             </div>
             <button type="submit" name="login">Login</button>
         </form>
-        <p id="error-message" class="error-message"></p>
+        <p id="error-message" class="error-message">
+        <?php
+            // Display error message if any
+            if (isset($error_message)) {
+                echo $error_message;
+            }
+            ?>
+        </p>
         <p>Not registered yet? <a href="register.php">Register Now</a></p>
+        <script src="user_login.js"></script>
     </div>
-    <script src="user_login.js"></script>
+    
 
     <?php
     if (isset($_POST['login'])) {
@@ -40,33 +49,36 @@ include "connection.php";
         $password = mysqli_real_escape_string($db, $_POST['password']);
         
         
-        $query = "SELECT * FROM `student_register` WHERE username='$username' AND password='$password'";
-        $res = mysqli_query($db, $query);
-        
-        
-        if ($res === false) {
+        $query = "SELECT * FROM `student_register` WHERE username='$username'";
+    $res = mysqli_query($db, $query);
+
+    if ($res === false) {
+        // SQL query error
+        echo "Query error: " . mysqli_error($db);
+    } else {
+        $count = mysqli_num_rows($res);
+        if ($count > 0) {
+            $row = mysqli_fetch_assoc($res);
             
-            echo "Query error: " . mysqli_error($db);
-        } else {
-            $count = mysqli_num_rows($res);
-            if ($count > 0) {
-                
-                ?>
-                <script type="text/javascript">
-                window.location.href = "user_dashboard.php";
-                </script>
-                <?php
-            } else {
-                
-                ?>
-                <div class="alert alert-danger" style="width: 600px; margin-left: 370px; background-color: #de1313; color: white">
-                    <strong>The username and password don't match</strong>
-                </div>
-                <?php
-            }
-        }
-    }
+           
+if ($password == $row['password']) {
+    $_SESSION['username'] = $username;
     ?>
+    <script type="text/javascript">
+    window.location.href = "user-dashboard.php";
+    </script>
+    <?php
+} else {
     
+    $error_message = "Invalid username or password.";
+}
+} else {
+   
+    $error_message = "Invalid username or password.";
+}
+
+    }
+}
+?>
 </body>
 </html>
