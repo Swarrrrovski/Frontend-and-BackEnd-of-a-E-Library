@@ -24,7 +24,7 @@ include "connection.php";
         <h1>Vault Registration</h1>
         <p id="selectedRoleText"></p>
 
-        <form id="registrationForm" action="" method="post">
+        <form id="registrationForm" action="register.php" method="post">
             <div class="form-group">
                 <label for="fname">First Name:</label>
                 <input type="text" id="fname" name="fname" placeholder="Enter First Name" required>
@@ -58,20 +58,24 @@ include "connection.php";
 
         <p id="error-message" class="error-message"></p>
         
+        <script src="admin_register.js"></script> 
     </div>
-
-    <script src="User/register.js"></script>
-
-    
+    <script>
+        function selectRole(role) {
+            document.getElementById('selectedRoleText').textContent = 'Selected Role: ' + role;
+            document.getElementById('registrationContainer').style.display = 'block';
+        }
+    </script>
 <?php
+
 if (isset($_POST['registerBtn'])) {
-    // Fetch form data
+   
     $fname = $_POST['fname'];
     $mname = $_POST['mname'];
     $lname = $_POST['lname'];
     $email = $_POST['email'];
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = $_POST['password'];  
     $confirmPassword = $_POST['confirmPassword'];
 
     
@@ -88,22 +92,21 @@ if (isset($_POST['registerBtn'])) {
 
     if ($count == 0) {
         if ($password === $confirmPassword) {
-            
-            
-
-            
-            $insertQuery = "INSERT INTO `student_register` (fname, mname, lname, email, username, password)
+            // Insert user into the database without hashing the password
+            $insertQuery = "INSERT INTO `admin_register` (fname, mname, lname, email, username, password)
                             VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$password')";
             
             if (mysqli_query($db, $insertQuery)) {
+                // Output JavaScript for alert and redirection
                 echo "<script type='text/javascript'>
-            alert('Registration successful');
-            window.location.href = 'libraryphp/ind.php'; 
-          </script>";
+                    alert('Registration successful');
+                    window.location.href = 'libraryphp/ind.php'; // Redirect to home page after alert
+                </script>";
+                exit(); // Make sure to stop further script execution after the redirect
             } else {
-                
-                echo "Error: " . mysqli_error($db);
+                echo "Error: " . mysqli_error($db); // For debugging if the query fails
             }
+            
         } else {
             echo "<script type='text/javascript'>alert('Passwords do not match.');</script>";
         }

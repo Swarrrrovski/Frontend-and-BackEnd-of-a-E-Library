@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <script src="user_login.js"></script>
     <link rel="stylesheet" href="user_login.css">
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
@@ -39,7 +39,7 @@ if (isset($_SESSION['error_message'])) {
 
         </p>
         <p>Not registered yet? <a href="register.php">Register Now</a></p>
-        <script src="user_login.js"></script>
+        
     </div>
     
 <?php
