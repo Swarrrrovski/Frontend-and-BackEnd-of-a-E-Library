@@ -1,52 +1,68 @@
-
-
-document.getElementById('registrationForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-
-    // Form field validation logic (as in the original JS code)
-    var pw1 = document.getElementById("password").value;
-    var pw2 = document.getElementById("confirmPassword").value;
-    var fname = document.getElementById("fname").value;
-    var lname = document.getElementById("lname").value;
+function selectRole(role) {
+    document.querySelector('.role-selection').style.display = 'none';
+    document.querySelector('.registration-container').style.display = 'block';
+    document.getElementById('role-display').innerText = "Registering as: " + role.toUpperCase();
+}
+function validateForm() {
+    var pw1 = document.getElementById("pswd1").value;
+    var pw2 = document.getElementById("pswd2").value;
+    var name1 = document.getElementById("fname").value;
+    var name2 = document.getElementById("lname").value;
+    var email = document.getElementById("email").value;
     var username = document.getElementById("username").value;
+    var ag = document.getElementById("age").value;
 
-    document.getElementById("error-message").innerHTML = "";
-
-    if (fname === "" || lname === "" || username === "" || pw1 === "" || pw2 === "") {
-        document.getElementById("error-message").innerHTML = "All fields are required.";
-        return;
+    if (name1 == "") {
+        document.getElementById("blankMsg").innerHTML = "**Fill the first name";
+        return false;
     }
 
-    if (pw1 !== pw2) {
-        document.getElementById("error-message").innerHTML = "Passwords do not match.";
-        return;
+    if (!isNaN(name1)) {
+        document.getElementById("blankMsg").innerHTML = "**Only characters are allowed";
+        return false;
+    }
+    if (ag == "") {
+        document.getElementById("blankMsg").innerHTML = "**Enter your age please";
+        return false;
+    }
+    if (ag< 5 && ag >150) {
+        document.getElementById("blankMsg").innerHTML = "**Enter a valid age";
+        return false;
+    }
+    if (!isNaN(name2)) {
+        document.getElementById("charMsg").innerHTML = "**Only characters are allowed";
+        return false;
+    }
+
+    if (pw1 == "") {
+        document.getElementById("message1").innerHTML = "**Fill the password please!";
+        return false;
+    }
+
+    if (pw2 == "") {
+        document.getElementById("message2").innerHTML = "**Enter the password please!";
+        return false;
     }
 
     if (pw1.length < 8) {
-        document.getElementById("error-message").innerHTML = "Password must be at least 8 characters long.";
-        return;
+        document.getElementById("message1").innerHTML = "**Password length must be at least 8 characters";
+        return false;
     }
 
-    // Prepare form data
-    const formData = new FormData(this);
+    if (pw1.length > 15) {
+        document.getElementById("message1").innerHTML = "**Password length must not exceed 15 characters";
+        return false;
+    }
 
-    // Send form data via AJAX request using fetch
-    try {
-        const response = await fetch('register.php', {
-            method: 'POST',
-            body: formData
-        });
-
-        const result = await response.text(); // Get response from PHP file
-
-        if (response.ok) {
-            alert('Registration successful');
-            // Redirect to ind.php page using JavaScript
-            window.location.href = 'libraryphp/ind.php';
-        } else {
-            document.getElementById('error-message').innerHTML = result;
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('error-message').innerHTML = 'Registration failed. Please try again.';
-    }})
+    if (pw1 != pw2) {
+        document.getElementById("message2").innerHTML = "**Passwords are not the same";
+        return false;
+    } else {
+       
+        localStorage.setItem("username", username);
+        localStorage.setItem("password", pw1);
+        
+        alert("Registration successful!");
+        window.location.href = "user_login.php"; 
+    }
+}

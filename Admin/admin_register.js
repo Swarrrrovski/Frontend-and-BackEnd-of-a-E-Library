@@ -63,6 +63,6 @@ function validateForm() {
         localStorage.setItem("password", pw1);
         
         alert("Registration successful!");
-        window.location.href = "admin_login.html"; 
+        window.location.href = "admin_login.php"; 
     }
 }

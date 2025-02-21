@@ -99,14 +99,11 @@ if (isset($_POST['registerBtn'])) {
                             VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$password')";
             
             if (mysqli_query($db, $insertQuery)) {
-                // Output JavaScript for alert and redirection
-                echo "<script type='text/javascript'>
-                    alert('Registration successful');
-                    window.location.href = 'libraryphp/ind.php'; // Redirect to home page after alert
-                </script>";
-                exit(); // Make sure to stop further script execution after the redirect
+                // Redirect to admin_login.php after successful registration
+                header("Location: admin_login.php");
+                exit(); // Ensure script stops after redirection
             } else {
-                echo "Error: " . mysqli_error($db); // For debugging if the query fails
+                echo "Error: " . mysqli_error($db); // Debugging if the query fails
             }
             
         } else {
