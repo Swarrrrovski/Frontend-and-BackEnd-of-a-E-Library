@@ -1,4 +1,4 @@
-<?php
+<?php 
 include "connection.php";
 ?>
 <!DOCTYPE html>
@@ -78,12 +78,11 @@ if (isset($_POST['registerBtn'])) {
     $password = $_POST['password'];  
     $confirmPassword = $_POST['confirmPassword'];
 
-    
+    // Check if username already exists
     $sql = "SELECT username FROM `student_register` WHERE username='$username'";
     $res = mysqli_query($db, $sql);
 
     if (!$res) {
-        
         echo "Error: " . mysqli_error($db);
         exit(); 
     }
@@ -92,19 +91,19 @@ if (isset($_POST['registerBtn'])) {
 
     if ($count == 0) {
         if ($password === $confirmPassword) {
-            // Insert user into the database without hashing the password
-            $insertQuery = "INSERT INTO `admin_register` (fname, mname, lname, email, username, password)
+            // Insert user into the database
+            $insertQuery = "INSERT INTO `student_register` (fname, mname, lname, email, username, password)
                             VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$password')";
             
             if (mysqli_query($db, $insertQuery)) {
-                // Output JavaScript for alert and redirection
+                // Output JavaScript for redirection after registration
                 echo "<script type='text/javascript'>
-                    alert('Registration successful');
-                    window.location.href = 'libraryphp/ind.php'; // Redirect to home page after alert
-                </script>";
-                exit(); // Make sure to stop further script execution after the redirect
+                        alert('Registration successful');
+                        window.location.href = 'ind.php'; // Redirect to ind.php
+                      </script>";
+                exit(); // Stop further script execution
             } else {
-                echo "Error: " . mysqli_error($db); // For debugging if the query fails
+                echo "Error: " . mysqli_error($db); // Debugging if the query fails
             }
             
         } else {
