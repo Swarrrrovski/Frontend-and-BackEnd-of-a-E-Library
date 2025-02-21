@@ -1,6 +1,18 @@
 function selectRole(role) {
+    // Update the displayed role text
     document.getElementById('selectedRoleText').textContent = 'Selected Role: ' + role;
+
+    // Show the registration form container
     document.getElementById('registrationContainer').style.display = 'block';
+
+    // Save the selected role in a hidden input field
+    const roleInput = document.createElement('input');
+    roleInput.type = 'hidden';
+    roleInput.name = 'role';
+    roleInput.value = role;
+
+    // Append the hidden role input to the form
+    document.getElementById('registrationForm').appendChild(roleInput);
 }
 
 document.getElementById('registrationForm').addEventListener('submit', async function(event) {
