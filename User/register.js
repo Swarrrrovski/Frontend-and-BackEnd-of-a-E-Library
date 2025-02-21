@@ -1,4 +1,3 @@
-
 function selectRole(role) {
     document.getElementById('selectedRoleText').textContent = 'Selected Role: ' + role;
     document.getElementById('registrationContainer').style.display = 'block';
@@ -7,7 +6,7 @@ function selectRole(role) {
 document.getElementById('registrationForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    // Form field validation logic (as in the original JS code)
+    // Form field validation logic
     var pw1 = document.getElementById("password").value;
     var pw2 = document.getElementById("confirmPassword").value;
     var fname = document.getElementById("fname").value;
@@ -46,11 +45,12 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         if (response.ok) {
             alert('Registration successful');
             // Redirect to ind.php page using JavaScript
-            window.location.href = 'libraryphp/ind.php';
+            window.location.href = '../libraryphp/ind.php';
         } else {
             document.getElementById('error-message').innerHTML = result;
         }
     } catch (error) {
         console.error('Error:', error);
         document.getElementById('error-message').innerHTML = 'Registration failed. Please try again.';
-    }})
+    }
+});

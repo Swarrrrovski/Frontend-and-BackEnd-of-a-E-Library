@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "connection.php";
 ?>
 <!DOCTYPE html>
@@ -57,70 +57,11 @@ include "connection.php";
         </form>
 
         <p id="error-message" class="error-message"></p>
-        
+
         <script src="register.js"></script> 
     </div>
 
-    <script>
-        function selectRole(role) {
-            document.getElementById('selectedRoleText').textContent = 'Selected Role: ' + role;
-            document.getElementById('registrationContainer').style.display = 'block';
-        }
-
-        document.getElementById('registrationForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-
-            // Form field validation logic (as in the original JS code)
-            var pw1 = document.getElementById("password").value;
-            var pw2 = document.getElementById("confirmPassword").value;
-            var fname = document.getElementById("fname").value;
-            var lname = document.getElementById("lname").value;
-            var username = document.getElementById("username").value;
-
-            document.getElementById("error-message").innerHTML = "";
-
-            if (fname === "" || lname === "" || username === "" || pw1 === "" || pw2 === "") {
-                document.getElementById("error-message").innerHTML = "All fields are required.";
-                return;
-            }
-
-            if (pw1 !== pw2) {
-                document.getElementById("error-message").innerHTML = "Passwords do not match.";
-                return;
-            }
-
-            if (pw1.length < 8) {
-                document.getElementById("error-message").innerHTML = "Password must be at least 8 characters long.";
-                return;
-            }
-
-            // Prepare form data
-            const formData = new FormData(this);
-
-            // Send form data via AJAX request using fetch
-            try {
-                const response = await fetch('register.php', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.text(); // Get response from PHP file
-
-                if (response.ok) {
-                    alert('Registration successful');
-                    // Redirect to ind.php page using JavaScript
-                    window.location.href = 'ind.php';
-                } else {
-                    document.getElementById('error-message').innerHTML = result;
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('error-message').innerHTML = 'Registration failed. Please try again.';
-            }
-        });
-    </script>
 <?php
-
 if (isset($_POST['fname'])) {
     // Fetch form data
     $fname = $_POST['fname'];
@@ -151,9 +92,8 @@ if (isset($_POST['fname'])) {
             if (mysqli_query($db, $insertQuery)) {
                 echo "Registration successful.";
             } else {
-                echo "Error: " . mysqli_error($db); // For debugging if the query fails
+                echo "Error: " . mysqli_error($db);
             }
-            
         } else {
             echo "Passwords do not match.";
         }
