@@ -1,4 +1,4 @@
-<?php
+<?php  
 include "connection.php";
 ?>
 <!DOCTYPE html>
@@ -6,24 +6,20 @@ include "connection.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vault - Registration</title>
+    <title>Vault-Registration</title>
     <link rel="stylesheet" href="register.css">
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
-
     <div class="role-selection">
         <h1>Register</h1>
-        <!-- Buttons for role selection -->
-        <button class="role-btn" type="button" onclick="selectRole('Admin')">Admin</button>
-        <button class="role-btn" type="button" onclick="selectRole('User')">User</button>
+        <button class="role-btn" onclick="selectRole('Admin')">Admin</button>
+        <button class="role-btn" onclick="selectRole('User')">User</button>
     </div>
 
-    <!-- Registration form (hidden initially) -->
     <div class="registration-container" id="registrationContainer" style="display: none;">
-        <h1>Vault Registration</h1>
+        <h1>vault</h1>
         <p id="selectedRoleText"></p>
-
         <form id="registrationForm">
             <div class="form-group">
                 <label for="fname">First Name:</label>
@@ -55,13 +51,18 @@ include "connection.php";
             </div>
             <button type="submit">Register</button>
         </form>
-
         <p id="error-message" class="error-message"></p>
+       
 
-        <script src="register.js"></script> 
     </div>
 
+    <script src="register.js"></script>
+    
+</body>
+</html>
+   
 <?php
+
 if (isset($_POST['fname'])) {
     // Fetch form data
     $fname = $_POST['fname'];
@@ -73,7 +74,7 @@ if (isset($_POST['fname'])) {
     $confirmPassword = $_POST['confirmPassword'];
 
     // Check if username already exists
-    $sql = "SELECT username FROM `student_register` WHERE username='$username'";
+    $sql = "SELECT username FROM student_register WHERE username='$username'";
     $res = mysqli_query($db, $sql);
 
     if (!$res) {
@@ -86,14 +87,15 @@ if (isset($_POST['fname'])) {
     if ($count == 0) {
         if ($password === $confirmPassword) {
             // Insert user into the database
-            $insertQuery = "INSERT INTO `student_register` (fname, mname, lname, email, username, password)
+            $insertQuery = "INSERT INTO student_register (fname, mname, lname, email, username, password)
                             VALUES ('$fname', '$mname', '$lname', '$email', '$username', '$password')";
             
             if (mysqli_query($db, $insertQuery)) {
                 echo "Registration successful.";
             } else {
-                echo "Error: " . mysqli_error($db);
+                echo "Error: " . mysqli_error($db); // For debugging if the query fails
             }
+            
         } else {
             echo "Passwords do not match.";
         }
@@ -105,3 +107,4 @@ if (isset($_POST['fname'])) {
 
 </body>
 </html>
+
