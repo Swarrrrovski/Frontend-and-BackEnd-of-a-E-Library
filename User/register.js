@@ -46,7 +46,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         if (response.ok) {
             alert('Registration successful');
             // Redirect to ind.php page using JavaScript
-            window.location.href = 'ind.php';
+            window.location.href = 'libraryphp/ind.php';
         } else {
             document.getElementById('error-message').innerHTML = result;
         }
