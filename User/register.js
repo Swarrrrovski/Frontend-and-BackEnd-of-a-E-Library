@@ -1,47 +1,56 @@
-function validateForm(event) {
-    event.preventDefault(); 
+
+function selectRole(role) {
+    document.getElementById('selectedRoleText').textContent = 'Selected Role: ' + role;
+    document.getElementById('registrationContainer').style.display = 'block';
+}
+
+document.getElementById('registrationForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    // Form field validation logic (as in the original JS code)
     var pw1 = document.getElementById("password").value;
     var pw2 = document.getElementById("confirmPassword").value;
     var fname = document.getElementById("fname").value;
     var lname = document.getElementById("lname").value;
     var username = document.getElementById("username").value;
 
-    
     document.getElementById("error-message").innerHTML = "";
 
-   
     if (fname === "" || lname === "" || username === "" || pw1 === "" || pw2 === "") {
         document.getElementById("error-message").innerHTML = "All fields are required.";
-        return false;
+        return;
     }
 
-    
     if (pw1 !== pw2) {
         document.getElementById("error-message").innerHTML = "Passwords do not match.";
-        return false;
+        return;
     }
 
-    
     if (pw1.length < 8) {
         document.getElementById("error-message").innerHTML = "Password must be at least 8 characters long.";
-        return false;
+        return;
     }
 
-    
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", pw1);
+    // Prepare form data
+    const formData = new FormData(this);
 
-    
-    var role = document.getElementById("selectedRoleText").innerText.split(": ")[1].toLowerCase();
+    // Send form data via AJAX request using fetch
+    try {
+        const response = await fetch('register.php', {
+            method: 'POST',
+            body: formData
+        });
 
-    
-    if (role === 'Admin') {
-        document.location.href = "admin_login.html";
+        const result = await response.text(); // Get response from PHP file
 
-    } else if (role === 'User') {
-        document.location.href = "user_login.html";
-
-    } else {
-        alert("Invalid role selection.");
-    }
-}
+        if (response.ok) {
+            alert('Registration successful');
+            // Redirect to ind.php page using JavaScript
+            window.location.href = 'ind.php';
+        } else {
+            document.getElementById('error-message').innerHTML = result;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('error-message').innerHTML = 'Registration failed. Please try again.';
+    }})
