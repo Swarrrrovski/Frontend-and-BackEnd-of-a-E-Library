@@ -7,7 +7,7 @@ include "connection.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vault - Registration</title>
-    <link rel="stylesheet" href="admin_register.css">
+    <link rel="stylesheet" href="register.css">
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
@@ -60,7 +60,7 @@ include "connection.php";
         <p>Already registered? <a href="admin_login.php">Login</a></p>
     </div>
 
-    <script src="admin_register.js"></script>
+    <script src="register.js"></script>
 
     <script>
         function selectRole(role) {
