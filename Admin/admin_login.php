@@ -61,7 +61,7 @@ if ($password == $row['password']) {
     $_SESSION['username'] = $username;
     ?>
     <script type="text/javascript">
-    window.location.href = "admin-dashboard.php";
+    window.location.href = "admin-dashboard.html";
     </script>
     <?php
 } else {

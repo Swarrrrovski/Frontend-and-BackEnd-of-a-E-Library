@@ -162,7 +162,7 @@
 <?php
     if(isset($_POST['submit']))
     {
-      if(isset($_SESSION['login_user']))
+      if(isset($_SESSION['admin_register']))
       {
         mysqli_query($db,"INSERT INTO books VALUES ('$_POST[bid]', '$_POST[name]', '$_POST[authors]', '$_POST[edition]', '$_POST[status]', '$_POST[quantity]', '$_POST[department]') ;");
         ?>

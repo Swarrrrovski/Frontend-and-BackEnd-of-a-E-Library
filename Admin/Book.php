@@ -119,7 +119,7 @@
 
             // Handle book deletion
             if (isset($_POST['submit1'])) {
-                if (isset($_SESSION['login_user'])) {
+                if (isset($_SESSION['admin_register'])) {
                     mysqli_query($db, "DELETE FROM books WHERE bid = '$_POST[bid]'");
                     echo "<script type='text/javascript'>alert('Delete Successful.');</script>";
                 } else {
