@@ -1,5 +1,6 @@
 document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); 
+    event.preventDefault();  
+    
     
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -13,10 +14,12 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     if (username === credentials.admin.username && password === credentials.admin.password) {
         errorMessage.style.display = "none"; 
         alert("Welcome, admin!");
+        console.log("Redirecting to dashboard...");
+         window.location.href = "admin-dashboard.html";
+
         
-        // Redirect to user dashboard after successful login
-        window.location.href = "admin-dashboard.html";
-    } else {
+    }
+     else {
         errorMessage.textContent = "Invalid username or password!";
         errorMessage.style.display = "block";
     }

@@ -60,7 +60,8 @@ if (isset($_SESSION['error_message'])) {
             
             if (password_verify($password, $row['password'])) {
                 $_SESSION['username'] = $username;
-                header("Location: user-dashboard.php");
+                $_SESSION['login_student'] = $username;
+                header("Location: user-dashboard.html");
                 exit();
             } else {
                 $_SESSION['error_message'] = "Invalid username or password.";
@@ -69,7 +70,7 @@ if (isset($_SESSION['error_message'])) {
             $_SESSION['error_message'] = "Invalid username or password.";
         }
     }
-    header("Location: user_login.php");
+    header("Location: user-dashboard.html");
     exit();
 }
 ?>

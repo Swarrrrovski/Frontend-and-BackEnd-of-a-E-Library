@@ -1,4 +1,5 @@
 <?php
+session_start();  
   include "connection.php";
  
 ?>
@@ -125,13 +126,14 @@
   			<div style="color: white; margin-left: 60px; font-size: 20px;">
 
                 <?php
-                if(isset($_SESSION['login_user']))
-
-                { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
-                    echo "</br></br>";
-
-                    echo "Welcome ".$_SESSION['login_user']; 
-                }
+                if (isset($_SESSION['login_user'])) {
+                  
+                  echo "<br><br>";
+                  echo "Welcome ".$_SESSION['login_user']; 
+              } else {
+                  echo "Please log in.";
+                  exit();
+              }
                 ?>
             </div><br><br>
 
@@ -162,7 +164,7 @@
 <?php
     if(isset($_POST['submit']))
     {
-      if(isset($_SESSION['admin_register']))
+      if(isset($_SESSION['login_user']))
       {
         mysqli_query($db,"INSERT INTO books VALUES ('$_POST[bid]', '$_POST[name]', '$_POST[authors]', '$_POST[edition]', '$_POST[status]', '$_POST[quantity]', '$_POST[department]') ;");
         ?>
@@ -171,6 +173,8 @@
           </script>
 
         <?php
+         header("Location: Book.php");
+         
 
       }
       else

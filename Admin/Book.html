@@ -15,11 +15,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
         <div style="color: white; margin-left: 60px; font-size: 20px;">
-            <?php if(isset($_SESSION['login_user'])): ?>
-                <img class='img-circle profile_img' height=120 width=120 src='images/<?= $_SESSION['pic'] ?>'>
-                <br><br>
-                Welcome <?= $_SESSION['login_user'] ?>
-            <?php endif; ?>
+            
         </div>
         <br><br>
 
@@ -48,34 +44,7 @@
             </form>
         </div>
 
-        <h2>List Of Books</h2>
-
-        <?php if (isset($message)): ?>
-            <p><?= $message ?></p>
-        <?php else: ?>
-            <table class='table table-bordered table-hover'>
-                <tr style='background-color: #6db6b9e6;'>
-                    <th>ID</th>
-                    <th>Book-Name</th>
-                    <th>Authors Name</th>
-                    <th>Edition</th>
-                    <th>Status</th>
-                    <th>Quantity</th>
-                    <th>Department</th>
-                </tr>
-                <?php foreach($books as $book): ?>
-                    <tr>
-                        <td><?= $book['bid'] ?></td>
-                        <td><?= $book['name'] ?></td>
-                        <td><?= $book['authors'] ?></td>
-                        <td><?= $book['edition'] ?></td>
-                        <td><?= $book['status'] ?></td>
-                        <td><?= $book['quantity'] ?></td>
-                        <td><?= $book['department'] ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        <?php endif; ?>
+        
     </div>
 
     <!-- JavaScript for Sidenav -->

@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vault - Login</title>
-    <link rel="stylesheet" href="admin_login.css">
-    <link rel="shortcut icon" href="book.png" type="image/x-icon">
-</head>
+    </head>
 <body>
     <div class="login-container">
         <h1>Vault Admin</h1>
         <form id="loginForm" action="admin_login.php" method="post">
-            
-               
-            
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Enter Username" required>
@@ -22,15 +14,31 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Enter Password" required>
             </div>
-            <button type="submit" name="login">Login</button>
+            <button type="button" onclick="validateForm()">Login</button>
         </form>
-        
-        <!-- Error message placeholder -->
         <p id="error-message" class="error-message"></p>
-        
         <p>Not registered yet? <a href="admin_register.php">Register Now</a></p>
     </div>
+    <script>
+        function validateForm() {
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const errorMessage = document.getElementById("error-message");
 
-    <script src="admin_login.js"></script>
+            const credentials = {
+                admin: { username: "admin", password: "admin123" }
+            };
+
+            if (username === credentials.admin.username && password === credentials.admin.password) {
+                errorMessage.style.display = "none";
+                alert("Welcome, admin!");
+                console.log("Redirecting to dashboard...");
+                window.location.href = "admin-dashboard.html";
+            } else {
+                errorMessage.textContent = "Invalid username or password!";
+                errorMessage.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>

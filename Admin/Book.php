@@ -1,6 +1,6 @@
 <?php
-  include "connection.php";  // Include the database connection
-  session_start();  // Start session to access session variables
+  include "connection.php";  
+  session_start();  
 ?>
 
 <!DOCTYPE html>
@@ -10,22 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Book.css">
     <script src="Book.js"></script>
-    
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
     <!--_________________sidenav_______________-->
-    
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
         <div style="color: white; margin-left: 60px; font-size: 20px;">
             <?php
-                if(isset($_SESSION['login_user'])) {
-                    echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
-                    echo "<br><br>";
-                    echo "Welcome ".$_SESSION['login_user']; 
-                }
+            if (isset($_SESSION['login_user'])) {
+               
+                echo "<br><br>";
+                echo "Welcome ".$_SESSION['login_user']; 
+            } else {
+                echo "Please log in.";
+                exit();
+            }
             ?>
         </div>
         <br><br>
@@ -42,9 +43,8 @@
         <div class="srch">
             <!-- Search form for books -->
             <form class="navbar-form" method="post" name="form1">
-			<input class="form-control" type="text" name="search" placeholder="Search books..." required>
-            <button style="width: 30px; height: 20px; background-color: #6db6b9e6; background-image: url('search.png'); background-size: cover; background-repeat: no-repeat; background-position: center;" type="submit" name="submit" class="btn btn-default">
-            </button>
+			    <input class="form-control" type="text" name="search" placeholder="Search books..." required>
+                <button style="width: 30px; height: 20px; background-color: #6db6b9e6; background-image: url('search.png'); background-size: cover; background-repeat: no-repeat; background-position: center;" type="submit" name="submit" class="btn btn-default"></button>
             </form>
 
             <!-- Delete form for books -->
@@ -57,6 +57,23 @@
         <h2>List Of Books</h2>
 
         <?php
+            // Handle book deletion before displaying books
+            if (isset($_POST['submit1'])) {
+                if (isset($_SESSION['login_user'])) {
+                    $bid = mysqli_real_escape_string($db, $_POST['bid']);
+                    $check = mysqli_query($db, "SELECT * FROM books WHERE bid = '$bid'");
+                    
+                    if (mysqli_num_rows($check) > 0) {
+                        mysqli_query($db, "DELETE FROM books WHERE bid = '$bid'");
+                        echo "<script type='text/javascript'>alert('Delete Successful.');</script>";
+                    } else {
+                        echo "<script type='text/javascript'>alert('Book ID not found.');</script>";
+                    }
+                } else {
+                    echo "<script type='text/javascript'>alert('Please Login First.');</script>";
+                }
+            }
+
             // If the search form is submitted
             if (isset($_POST['submit'])) {
                 $q = mysqli_query($db, "SELECT * FROM books WHERE name LIKE '%$_POST[search]%'");
@@ -115,16 +132,6 @@
                     echo "</tr>";
                 }
                 echo "</table>";
-            }
-
-            // Handle book deletion
-            if (isset($_POST['submit1'])) {
-                if (isset($_SESSION['admin_register'])) {
-                    mysqli_query($db, "DELETE FROM books WHERE bid = '$_POST[bid]'");
-                    echo "<script type='text/javascript'>alert('Delete Successful.');</script>";
-                } else {
-                    echo "<script type='text/javascript'>alert('Please Login First.');</script>";
-                }
             }
         ?>
     </div>
