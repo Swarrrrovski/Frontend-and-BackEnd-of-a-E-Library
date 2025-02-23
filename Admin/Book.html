@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Book.css">
+    <script src="Book.js"></script>
+    
+    <link rel="shortcut icon" href="book.png" type="image/x-icon">
+</head>
+<body>
+    <!--_________________sidenav_______________-->
+    
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <div style="color: white; margin-left: 60px; font-size: 20px;">
+            <?php if(isset($_SESSION['login_user'])): ?>
+                <img class='img-circle profile_img' height=120 width=120 src='images/<?= $_SESSION['pic'] ?>'>
+                <br><br>
+                Welcome <?= $_SESSION['login_user'] ?>
+            <?php endif; ?>
+        </div>
+        <br><br>
+
+        <div class="h"><a href="add.php">Add Books</a></div> 
+        <div class="h"><a href="request.php">Book Request</a></div>
+        <div class="h"><a href="issue_info.php">Issue Information</a></div>
+        <div class="h"><a href="expired.php">Expired List</a></div>
+    </div>
+
+    <div id="main">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+        <div class="srch">
+            <input class="form-control" type="text" name="search" placeholder="Search books..." required>
+            <button style="width: 30px; height: 20px; background-color: #6db6b9e6; background-image: url('search.png'); background-size: cover; background-repeat: no-repeat; background-position: center;" type="submit" name="submit" class="btn btn-default">
+            </button>
+            
+                
+                
+            </form>
+
+            <form class="navbar-form" method="post" action="Book.php">
+                <input class="form-control" type="text" name="bid" placeholder="Enter Book ID" required>
+                <button style="background-color: #6db6b9e6;" type="submit" name="submit1" class="btn btn-default">
+                    Delete</button>
+            </form>
+        </div>
+
+        <h2>List Of Books</h2>
+
+        <?php if (isset($message)): ?>
+            <p><?= $message ?></p>
+        <?php else: ?>
+            <table class='table table-bordered table-hover'>
+                <tr style='background-color: #6db6b9e6;'>
+                    <th>ID</th>
+                    <th>Book-Name</th>
+                    <th>Authors Name</th>
+                    <th>Edition</th>
+                    <th>Status</th>
+                    <th>Quantity</th>
+                    <th>Department</th>
+                </tr>
+                <?php foreach($books as $book): ?>
+                    <tr>
+                        <td><?= $book['bid'] ?></td>
+                        <td><?= $book['name'] ?></td>
+                        <td><?= $book['authors'] ?></td>
+                        <td><?= $book['edition'] ?></td>
+                        <td><?= $book['status'] ?></td>
+                        <td><?= $book['quantity'] ?></td>
+                        <td><?= $book['department'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        <?php endif; ?>
+    </div>
+
+    <!-- JavaScript for Sidenav -->
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+</body>
+</html>

@@ -59,7 +59,7 @@
         <?php
             // If the search form is submitted
             if (isset($_POST['submit'])) {
-                $q = mysqli_query($db, "SELECT * FROM 'books' WHERE name LIKE '%$_POST[search]%'");
+                $q = mysqli_query($db, "SELECT * FROM books WHERE name LIKE '%$_POST[search]%'");
 
                 if (mysqli_num_rows($q) == 0) {
                     echo "Sorry! No book found. Try searching again.";
