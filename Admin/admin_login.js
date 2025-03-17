@@ -15,7 +15,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         errorMessage.style.display = "none"; 
         alert("Welcome, admin!");
         console.log("Redirecting to dashboard...");
-         window.location.href = "admin-dashboard.html";
+         window.location.href = "admin-dashboard.php";
 
         
     }

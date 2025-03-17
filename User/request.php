@@ -100,11 +100,12 @@
             </div><br><br>
 
  
-  <div class="h"> <a href="Books.php">Books</a></div>
-  <div class="h"> <a href="request.php">Book Request</a></div>
-  <div class="h"> <a href="issue_info.php">Issue Information</a></div>
+  <div class="h"><a href="Books.php">Books</a></div>
+  <div class="h"><a href="issue_info.php">Issue Information</a></div>
   <div class="h"><a href="expired.php">Expired List</a></div>
+  <div class="h"><a href="user-dashboard.php">Back To Dashboard</a></div>
 
+  
 </div>
 <div id="main">
   
@@ -126,43 +127,36 @@
 	}
 	</script>
 	<br><br>
+<?php
 	
-	<?php
-	if(isset($_SESSION['login_student']))
-		{
-			$q=mysqli_query($db,"SELECT * from issue_book where username='$_SESSION[login_student]' and approve='' ;");
-
-			if(mysqli_num_rows($q)==0)
-			{
-				echo "There's no pending request";
+        if(isset($_SESSION['login_student'])) {
+		$query = "SELECT * FROM issue_book WHERE username='$_SESSION[login_student]' ";
+		$result = mysqli_query($db, $query);
+	
+		if(mysqli_num_rows($result) == 0) {
+			echo "There's no pending request";
+		} else {
+			echo "<table class='table table-bordered table-hover'>";
+			echo "<tr style='background-color: #6db6b9e6;'>
+					<th>Book-ID</th>
+					<th>Approve Status</th>
+					<th>Issue Date</th>
+					<th>Return Date</th>
+				  </tr>";
+	
+			while($row = mysqli_fetch_assoc($result)) {
+				echo "<tr>
+						<td>{$row['bid']}</td>
+						<td>{$row['approve']}</td>
+						<td>{$row['issue']}</td>
+						<td>{$row['return']}</td>
+					  </tr>";
 			}
-			else
-			{
-		echo "<table class='table table-bordered table-hover' >";
-			echo "<tr style='background-color: #6db6b9e6;'>";
-				//Table header
-				
-				echo "<th>"; echo "Book-ID";  echo "</th>";
-				echo "<th>"; echo "Approve Status";  echo "</th>";
-				echo "<th>"; echo "Issue Date";  echo "</th>";
-				echo "<th>"; echo "Return Date";  echo "</th>";
-				
-			echo "</tr>";	
-
-			while($row=mysqli_fetch_assoc($q))
-			{
-				echo "<tr>";
-				echo "<td>"; echo $row['bid']; echo "</td>";
-				echo "<td>"; echo $row['approve']; echo "</td>";
-				echo "<td>"; echo $row['issue']; echo "</td>";
-				echo "<td>"; echo $row['return']; echo "</td>";
-				
-				echo "</tr>";
-			}
-		echo "</table>";
-			}
+			echo "</table>";
 		}
-		else
+	}
+	
+	else
 		{
 			echo "</br></br></br>"; 
 			echo "<h2><b>";

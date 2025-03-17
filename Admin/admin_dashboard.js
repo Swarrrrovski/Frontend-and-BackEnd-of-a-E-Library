@@ -77,5 +77,5 @@ document.getElementById('subscriptionStatus').textContent = `Your subscription e
 
 function logout() {
     alert("Logging out...");
-    window.location.href = "admin_login.html";
+    window.location.href = "ind.php";
 }

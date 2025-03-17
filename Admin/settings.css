@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+body.dark-theme {
+    background-color: #1e1e1e;
+    color: #f4f4f4;
+}
+
+header {
+    h1{
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 35px;
+        margin-left: 45%;
+        color: white;
+        flex-grow: 1;
+        text-shadow: 4px 4px 4px black;
+    }
+    background-color: #007bff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#toggleDark {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 24px;
+    transform: translate(-50%, -50%);
+}
+
+.settings-container {
+    display: flex;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.sidebar {
+    width: 25%;
+    background: white;
+    padding: 20px;
+    border-radius: 5%;
+    font-size: 18px;
+    border-right: 1px solid #ccc;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sidebar li:hover {
+    background: #f0f0f0;
+    border-radius: 15px;
+}
+
+.content {
+    width: 75%;
+    padding: 20px;
+}
+
+.settings-section {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
+}
+
+.settings-section.active {
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button.danger {
+    background: #ff4d4d;
+}
+
+button.danger:hover {
+    background: #cc0000;
+}
+
+body.dark-theme .sidebar,
+body.dark-theme .settings-section {
+    background: #2c2c2c;
+    color: #f4f4f4;
+    border-color: #444;
+}
+
+body.dark-theme .sidebar li:hover {
+    background: #444;
+}

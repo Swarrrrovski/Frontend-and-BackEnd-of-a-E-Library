@@ -1,6 +1,6 @@
 <?php
   include "connection.php";
-  include "navbar.php";
+ session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -112,7 +112,7 @@
                 <?php
                 if(isset($_SESSION['login_user']))
 
-                { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
+                { 	
                     echo "</br></br>";
 
                     echo "Welcome ".$_SESSION['login_user']; 
@@ -121,10 +121,13 @@
             </div><br><br>
 
  
-  <div class="h"> <a href="books.php">Books</a></div>
+  <div class="h"> <a href="Book.php">Books</a></div>
   <div class="h"> <a href="request.php">Book Request</a></div>
-  <div class="h"> <a href="issue_info.php">Issue Information</a></div>
-  <div class="h"><a href="expired.php">Expired List</a></div>
+  <div class="h"> <a href="expired.php">Expired List</a></div>
+  <div class="h"> <a href="issue-info.php">Issue Information</a></div>
+  <div class="h"> <a href="admin-dashboard.html">Back To Dashboard</a></div>
+
+ 
 </div>
 
 <div id="main">
@@ -154,35 +157,49 @@
         <input type="text" name="issue" placeholder="Issue Date yyyy-mm-dd" required="" class="form-control"><br>
 
         <input type="text" name="return" placeholder="Return Date yyyy-mm-dd" required="" class="form-control"><br>
-        <button class="btn btn-default" type="submit" name="submit">Approve</button>
+        
+        <button class="btn btn-default" type="submit" name="submit" >Approve</button>
+
     </form>
   
   </div>
 </div>
 
 <?php
-  if(isset($_POST['submit']))
-  {
-    mysqli_query($db,"UPDATE  `issue_book` SET  `approve` =  '$_POST[approve]', `issue` =  '$_POST[issue]', `return` =  '$_POST[return]' WHERE username='$_SESSION[name]' and bid='$_SESSION[bid]';");
+if (isset($_POST['submit'])) {
+    // Make sure session variables are set
+    if (isset($_SESSION['name']) && isset($_SESSION['bid'])) {
+        $approve = $_POST['approve'];
+        $issue = $_POST['issue'];
+        $return = $_POST['return'];
+        $name = $_SESSION['name'];
+        $bid = $_SESSION['bid'];
 
-    mysqli_query($db,"UPDATE books SET quantity = quantity-1 where bid='$_SESSION[bid]' ;");
+        // Update approval information
+        $updateQuery = "UPDATE `issue_book` SET `approve` = '$approve', `issue` = '$issue', `return` = '$return' WHERE username = '$name' AND bid = '$bid';";
+        if (mysqli_query($db, $updateQuery)) {
+            // Update book quantity
+            mysqli_query($db, "UPDATE books SET quantity = quantity - 1 WHERE bid = '$bid';");
 
-    $res=mysqli_query($db,"SELECT quantity from books where bid='$_SESSION[bid];");
+            // Fetch quantity to update book status if necessary
+            $res = mysqli_query($db, "SELECT quantity FROM books WHERE bid = '$bid';");
+            if ($res) {
+                $row = mysqli_fetch_assoc($res);
+                if ($row['quantity'] == 0) {
+                    mysqli_query($db, "UPDATE books SET status = 'not-available' WHERE bid = '$bid';");
+                }
+            } else {
+                echo "Error fetching quantity: " . mysqli_error($db);
+            }
 
-    while($row=mysqli_fetch_assoc($res))
-    {
-      if($row['quantity']==0)
-      {
-        mysqli_query($db,"UPDATE books SET status='not-available' where bid='$_SESSION[bid]';");
-      }
+            echo '<script>alert("Updated successfully."); window.location="request.php";</script>';
+        } else {
+            echo "Error updating record: " . mysqli_error($db);
+        }
+    } else {
+        echo "Session variables 'name' and 'bid' not set.";
     }
-    ?>
-      <script type="text/javascript">
-        alert("Updated successfully.");
-        window.location="request.php"
-      </script>
-    <?php
-  }
+}
 ?>
 </body>
 </html>

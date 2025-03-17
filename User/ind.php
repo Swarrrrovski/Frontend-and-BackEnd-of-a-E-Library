@@ -24,8 +24,8 @@
         </div>
         <nav class="navbar">
             <a href="ind.php">Home</a>
-            <a href="User/user_login.php">User</a>
-            <a href="Admin/admin_login.php">Admin</a>
+            <a href="user_login.php">User</a>
+            <a href="admin_login.php">Admin</a>
             <a href="#contact-us">Contact Us</a>
         </nav>
     </header>

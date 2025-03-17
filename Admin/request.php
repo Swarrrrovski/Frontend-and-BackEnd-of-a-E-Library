@@ -1,12 +1,13 @@
 <?php
   include "connection.php";
-  
+  session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Book Request</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 
 	<style type="text/css">
 
@@ -107,7 +108,7 @@
                 <?php
                 if(isset($_SESSION['login_user']))
 
-                { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
+                { 	
                     echo "</br></br>";
 
                     echo "Welcome ".$_SESSION['login_user']; 
@@ -116,10 +117,10 @@
             </div><br><br>
 
  
-  <div class="h"> <a href="books.php">Books</a></div>
-  <div class="h"> <a href="request.php">Book Request</a></div>
-  <div class="h"> <a href="issue-info.php">Issue Information</a></div>
+  <div class="h"><a href="student.php">Student Information</a></div>
+  <div class="h"><a href="issue-info.php">Issue Information</a></div>
   <div class="h"><a href="expired.php">Expired List</a></div>
+  <div class="h"><a href="admin-dashboard.php">Back To Dashboard</a></div>
 </div>
 
 <div id="main">
@@ -142,23 +143,24 @@
 	</script>
 	<br>
 
-<div class="container">
-	<div class="srch">
-		<br>
-		<form method="post" action="" name="form1">
-			<input type="text" name="username" class="form-control" placeholder="Username" required=""><br>
-			<input type="text" name="bid" class="form-control" placeholder="BID" required=""><br>
-			<button class="btn btn-default" name="submit" type="submit">Submit</button><br>
-		</form>
+
+	<h3 style="text-align: center;">Request of Book</h3><div class="container">
+	<div class = "srch">
+	<form method="post" action="" name="form1">
+    <input type="text" name="username" class="form-control" placeholder="Username" required="">
+    <input type="text" name="bid" class="form-control" placeholder="Book ID" required="">
+    <button class="btn btn-default" name="submit" type="submit">Submit</button>
+</form>
+
 	</div>
 
-	<h3 style="text-align: center;">Request of Book</h3>
+
 
 	<?php
 	
 	if(isset($_SESSION['login_user']))
 	{
-		$sql= "SELECT student.username,roll,books.bid,name,authors,edition,status FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve =''";
+		$sql= "SELECT student_register.username,books.bid,name,authors,edition,status FROM student_register inner join issue_book ON student_register.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve =''";
 		$res= mysqli_query($db,$sql);
 
 		if(mysqli_num_rows($res)==0)
@@ -174,7 +176,7 @@
 				//Table header
 				
 				echo "<th>"; echo "Username";  echo "</th>";
-				echo "<th>"; echo "Roll No";  echo "</th>";
+				
 				echo "<th>"; echo "BID";  echo "</th>";
 				echo "<th>"; echo "Book Name";  echo "</th>";
 				echo "<th>"; echo "Authors Name";  echo "</th>";
@@ -187,7 +189,7 @@
 			{
 				echo "<tr>";
 				echo "<td>"; echo $row['username']; echo "</td>";
-				echo "<td>"; echo $row['roll']; echo "</td>";
+				
 				echo "<td>"; echo $row['bid']; echo "</td>";
 				echo "<td>"; echo $row['name']; echo "</td>";
 				echo "<td>"; echo $row['authors']; echo "</td>";
@@ -221,7 +223,8 @@
 	}
 
 	?>
-	</div>
+	<div class="container">
+	
 </div>
 </body>
 </html>

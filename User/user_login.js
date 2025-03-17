@@ -15,7 +15,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         alert("Welcome, user!");
         
         // Redirect to user dashboard after successful login
-        window.location.href = "user-dashboard.html";
+        window.location.href = "user-dashboard.php";
     } else {
         errorMessage.textContent = "Invalid username or password!";
         errorMessage.style.display = "block";

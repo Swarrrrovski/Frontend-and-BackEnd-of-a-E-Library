@@ -1,24 +1,50 @@
 <?php
-include "connection.php"; 
-session_start();
+session_start(); // Start the session at the top of the script
+include "connection.php";
+
+if (isset($_POST['login'])) {
+    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+
+    $query = "SELECT * FROM `student_register` WHERE username='$username'";
+    $res = mysqli_query($db, $query);
+
+    if ($res === false) {
+        $error_message = "Query error: " . mysqli_error($db);
+    } else {
+        $count = mysqli_num_rows($res);
+        if ($count > 0) {
+            $row = mysqli_fetch_assoc($res);
+
+            // Verify password (should ideally use password_hash and password_verify)
+            if ($password == $row['password']) {
+                $_SESSION['username'] = $username; // Store username in session
+                $_SESSION['login_student'] = $username; // You can also use this for consistency
+                header("Location: user-dashboard.php"); // Redirect to dashboard
+                exit(); // Important to stop further script execution
+            } else {
+                $error_message = "Invalid username or password.";
+            }
+        } else {
+            $error_message = "Invalid username or password.";
+        }
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="user_login.js"></script>
+    <title>Vault - Login</title>
     <link rel="stylesheet" href="user_login.css">
     <link rel="shortcut icon" href="book.png" type="image/x-icon">
 </head>
 <body>
-    
-        <div class="login-container">
-        <h1>Vault-User</h1>
+    <div class="login-container">
+        <h1>Vault User</h1>
         <form id="loginForm" action="user_login.php" method="post">
-            
-       
-            
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Enter Username" required>
@@ -30,49 +56,13 @@ session_start();
             <button type="submit" name="login">Login</button>
         </form>
         <p id="error-message" class="error-message">
-        <?php
-if (isset($_SESSION['error_message'])) {
-    echo $_SESSION['error_message'];
-    unset($_SESSION['error_message']); // Clear the message after displaying it
-}
-?>
-
+            <?php
+            if (isset($error_message)) {
+                echo $error_message;
+            }
+            ?>
         </p>
         <p>Not registered yet? <a href="register.php">Register Now</a></p>
-        
     </div>
-    
-<?php
-    if (isset($_POST['login'])) {
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-    $password = mysqli_real_escape_string($db, $_POST['password']);
-    
-    $query = "SELECT * FROM `student_register` WHERE username='$username'";
-    $res = mysqli_query($db, $query);
-
-    if ($res === false) {
-        // SQL query error
-        $_SESSION['error_message'] = "Query error: " . mysqli_error($db);
-    } else {
-        $count = mysqli_num_rows($res);
-        if ($count > 0) {
-            $row = mysqli_fetch_assoc($res);
-            
-            if (password_verify($password, $row['password'])) {
-                $_SESSION['username'] = $username;
-                $_SESSION['login_student'] = $username;
-                header("Location: user-dashboard.html");
-                exit();
-            } else {
-                $_SESSION['error_message'] = "Invalid username or password.";
-            }
-        } else {
-            $_SESSION['error_message'] = "Invalid username or password.";
-        }
-    }
-    header("Location: user-dashboard.html");
-    exit();
-}
-?>
 </body>
 </html>

@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
             if ($password == $row['password']) {
                 $_SESSION['username'] = $username; // Store username in session
                 $_SESSION['login_user'] = $username; // You can also use this for consistency
-                header("Location: admin-dashboard.html"); // Redirect to dashboard
+                header("Location: admin-dashboard.php"); // Redirect to dashboard
                 exit(); // Important to stop further script execution
             } else {
                 $error_message = "Invalid username or password.";

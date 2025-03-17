@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vault-Settings</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <header>
+        <h1>Settings</h1>
+        <i class="bi bi-brightness-high-fill" id="toggleDark"></i>
+    </header>
+    
+    <div class="settings-container">
+        <aside class="sidebar">
+            <ul>
+                <li data-section="accountInfo"><i class="bi bi-person-fill"></i>&nbsp;&nbsp;Account</li>
+                <li data-section="changePassword"><i class="bi bi-key-fill"></i>&nbsp;&nbsp;Password</li>
+                <li data-section="closeAccount"><i class="bi bi-person-x-fill"></i>&nbsp;&nbsp;Close Account</li>
+            </ul>
+        </aside>
+        
+
+        <main class="content">
+        <!-- Account Information Section -->
+       <section id="accountInfo" class="settings-section active">
+    <h2>Account Information</h2>
+    <form id="accountForm" action="settings.php" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="User123" disabled>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="user@example.com">
+        
+        <button type="submit">Save Changes</button>
+    </form>
+            </section>
+
+<!-- Change Password Section -->
+            <section id="changePassword" class="settings-section">
+                <h2>Change Password</h2>
+              <form id="passwordForm" action="settings.php" method="post">
+                  <label for="currentPassword">Current Password:</label>
+                   <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter current password">
+
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password">
+
+        <label for="confirmNewPassword">Confirm Password:</label>
+        <input type="password" id="confirmNewPassword" placeholder="Confirm new password">
+        
+        <button type="submit">Change Password</button>
+   
+
+         <section id="closeAccount" class="settings-section">
+          <h2>Close Account</h2>
+           <p>This action cannot be undone.</p>
+            <button class="danger" id="deleteAccountBtn">Delete Account</button>
+</form>
+</section>
+
+        </main>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

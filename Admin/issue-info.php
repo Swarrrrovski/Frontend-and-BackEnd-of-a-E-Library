@@ -1,6 +1,6 @@
 <?php
   include "connection.php";
-  
+  session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -117,7 +117,7 @@ th,td
                 <?php
                 if(isset($_SESSION['login_user']))
 
-                { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
+                { 	
                     echo "</br></br>";
 
                     echo "Welcome ".$_SESSION['login_user']; 
@@ -126,10 +126,13 @@ th,td
             </div><br><br>
 
  
-  <div class="h"> <a href="books.php">Books</a></div>
+  <div class="h"> <a href="Book.php">Books</a></div>
+  <div class="h"> <a href="add.php">Add Books</a></div>
   <div class="h"> <a href="request.php">Book Request</a></div>
-  <div class="h"> <a href="issue-info.php">Issue Information</a></div>
+  <div class="h"> <a href="student.php">Student Information</a></div>
   <div class="h"><a href="expired.php">Expired List</a></div>
+  <div class="h"><a href="admin-dashboard.php">Back To Dashboard</a></div>
+  
 </div>
 
 <div id="main">
@@ -157,7 +160,7 @@ th,td
 
       if(isset($_SESSION['login_user']))
       {
-        $sql="SELECT student.username,roll,books.bid,name,authors,edition,issue,issue_book.return FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve ='Yes' ORDER BY `issue_book`.`return` ASC";
+        $sql="SELECT student_register.username,books.bid,name,authors,edition,issue,issue_book.approve,issue_book.return FROM student_register inner join issue_book ON student_register.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve ='Yes' ORDER BY `issue_book`.`return` ASC";
         $res=mysqli_query($db,$sql);
         
         
@@ -166,11 +169,11 @@ th,td
         
         echo "<tr style='background-color: #6db6b9e6;'>";
         echo "<th>"; echo "Username";  echo "</th>";
-        echo "<th>"; echo "Roll No";  echo "</th>";
         echo "<th>"; echo "BID";  echo "</th>";
         echo "<th>"; echo "Book Name";  echo "</th>";
         echo "<th>"; echo "Authors Name";  echo "</th>";
         echo "<th>"; echo "Edition";  echo "</th>";
+        echo "<th>"; echo "Status";  echo "</th>";
         echo "<th>"; echo "Issue Date";  echo "</th>";
         echo "<th>"; echo "Return Date";  echo "</th>";
 
@@ -194,11 +197,11 @@ th,td
 
         echo "<tr>";
           echo "<td>"; echo $row['username']; echo "</td>";
-          echo "<td>"; echo $row['roll']; echo "</td>";
           echo "<td>"; echo $row['bid']; echo "</td>";
           echo "<td>"; echo $row['name']; echo "</td>";
           echo "<td>"; echo $row['authors']; echo "</td>";
           echo "<td>"; echo $row['edition']; echo "</td>";
+          echo "<td>"; echo $row['approve']; echo "</td>";
           echo "<td>"; echo $row['issue']; echo "</td>";
           echo "<td>"; echo $row['return']; echo "</td>";
         echo "</tr>";
