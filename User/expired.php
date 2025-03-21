@@ -37,23 +37,27 @@
 			z-index: 1;
 			top: 0;
 			left: 0;
-			background-color: #222;
+			background-color: #333;
 			overflow-x: hidden;
 			transition: 0.5s;
 			padding-top: 60px;
+			box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.3);
 		}
 
 		.sidenav a {
-			padding: 8px 8px 8px 32px;
+			padding: 10px 20px;
 			text-decoration: none;
-			font-size: 25px;
-			color: #818181;
+			font-size: 20px;
+			color: #b0b0b0;
 			display: block;
 			transition: 0.3s;
+			border-bottom: 1px solid #444;
 		}
 
 		.sidenav a:hover {
 			color: white;
+			background-color: #5d8f8f;
+			font-weight: bold;
 		}
 
 		.sidenav .closebtn {
@@ -61,9 +65,9 @@
 			top: 0;
 			right: 25px;
 			font-size: 36px;
+			color: white;
 			margin-left: 50px;
 		}
-
 		#main {
 			transition: margin-left .5s;
 			padding-left: 50px;
@@ -99,6 +103,43 @@
 		th, td {
 			width: 10%;
 		}
+		.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background-color: #6db6b9e6;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tr:hover {
+  background-color:rgb(96, 58, 58);
+  transition: background-color 0.3s ease;
+}
+
+.scroll {
+  width: 100%;
+  height: 500px;
+  overflow: auto;
+}
+
+.table-bordered {
+  border: 1px solid #ddd;
+}
+
+.table-bordered td, .table-bordered th {
+  border: 1px solid #ddd;
+}
 	</style>
 
 </head>

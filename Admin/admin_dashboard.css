@@ -1,4 +1,7 @@
+
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Poppins:wght@400;500&display=swap');
+
 :root {
     --base-color: white;
     --base-variant: #e8e9ed;
@@ -12,8 +15,8 @@
 }
 
 .dark-mode {
-    --base-color:black;
-    --base-variant:#444;
+    --base-color: black;
+    --base-variant: #444;
     --text-color: #ffffff;
     --primary-color: #3a435d;
     --secondary-text: #a4a5b8;
@@ -30,6 +33,12 @@ body {
     background-color: var(--base-color);
     color: var(--text-color);
     transition: all 0.3s ease-in-out;
+    background-image:url('Images/im6.jpg');
+    background-size: cover; /* Ensure the image covers the entire body */
+   background-position: center center; /* Center the image both horizontally and vertically */
+   background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -81,10 +90,10 @@ header h1 {
 }
 
 #themeToggle {
-    background: var(--button-bg);
+    background: var(--accent-color);
     border: none;
     padding: 8px;
-    margin-right:30px;
+    margin-right: 30px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
@@ -102,7 +111,7 @@ header h1 {
     padding: 20px;
     border-radius: 15px;
     height: 75vh;
-    margin:20px auto ;
+    margin: 20px auto;
     margin-left: 20px;
 }
 
@@ -144,8 +153,9 @@ section {
     padding: 15px;
     border-radius: 5px;
 }
-.borrowed-books , .purchased-books , .due-payments, .subscription , .recommendations{
-    background: var( --sidebar-bg);
+
+.borrowed-books, .purchased-books, .due-payments, .subscription, .recommendations {
+    background: var(--sidebar-bg);
 }
 
 #bookList, #purchasedList, #duePayments, #recommendedBooks {
@@ -159,3 +169,4 @@ section {
     border-radius: 5px;
     color: var(--text-color);
 }
+

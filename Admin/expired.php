@@ -10,96 +10,236 @@
 
 	<style type="text/css">
 
-		.srch
-		{
-			padding-left: 70%;
-		}
-		.form-control
-		{
-			width: 300px;
-			height: 40px;
-			background-color: black;
-			color: white;
-		}
-		
-		body {
-			background-image: url("images/aa.jpg");
-			background-repeat: no-repeat;
-  			font-family: "Lato", sans-serif;
-  			transition: background-color .5s;
-		}
+	.srch
+	{
+		padding-left: 70%;
+	}
+	.form-control
+	{
+		width: 300px;
+		height: 40px;
+		background-color: black;
+		color: white;
+	}
 
-		.sidenav {
-			height: 100%;
-			margin-top: 50px;
-			width: 0;
-			position: fixed;
-			z-index: 1;
-			top: 0;
-			left: 0;
-			background-color: #222;
-			overflow-x: hidden;
-			transition: 0.5s;
-			padding-top: 60px;
-		}
+	body {
+		background-image: url("images/aa.jpg");
+		background-repeat: no-repeat;
+		font-family: "Lato", sans-serif;
+		transition: background-color .5s;
+	}
 
-		.sidenav a {
-			padding: 8px 8px 8px 32px;
-			text-decoration: none;
-			font-size: 25px;
-			color: #818181;
-			display: block;
-			transition: 0.3s;
-		}
+	.sidenav {
+		height: 100%;
+		margin-top: 50px;
+		width: 0;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: #222;
+		overflow-x: hidden;
+		transition: 0.5s;
+		padding-top: 60px;
+	}
 
-		.sidenav a:hover {
-			color: white;
-		}
+	.sidenav {
+    height: 100%;
+    margin-top: 50px;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.3);
+}
 
-		.sidenav .closebtn {
-			position: absolute;
-			top: 0;
-			right: 25px;
-			font-size: 36px;
-			margin-left: 50px;
-		}
+.sidenav a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #b0b0b0;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #444;
+}
 
-		#main {
-			transition: margin-left .5s;
-			padding-left: 50px;
-		}
+.sidenav a:hover {
+    color: white;
+    background-color: #5d8f8f;
+    font-weight: bold;
+}
 
-		@media screen and (max-height: 450px) {
-			.sidenav {padding-top: 15px;}
-			.sidenav a {font-size: 18px;}
-		}
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    color: white;
+    margin-left: 50px;
+}
 
-		.img-circle {
-			margin-left: 20px;
-		}
-		.h:hover {
-			color:white;
-			width: 300px;
-			height: 50px;
-			background-color: #00544c;
-		}
-		.container {
-			height: 1000px;
-			background-color: black;
-			opacity: .8;
-			color: white;
-			width: 90%;
-			margin-top: 10px;
-		}
-		.scroll {
-			width: 100%;
-			height: 1000px;
-			overflow: auto;
-		}
-		th, td {
-			width: 10%;
-		}
-	</style>
+
+	#main {
+		transition: margin-left .5s;
+		padding-left: 50px;
+	}
+
+	@media screen and (max-height: 450px) {
+		.sidenav {padding-top: 15px;}
+		.sidenav a {font-size: 18px;}
+	}
+
+	.img-circle {
+		margin-left: 20px;
+	}
+	.h:hover {
+		color:white;
+		width: 300px;
+		height: 50px;
+		background-color: #00544c;
+	}
+
+	.container {
+		height: 1000px;
+		background-color: black;
+		opacity: .8;
+		color: white;
+		width: 1250px;
+		margin-top: 10px;
+	}
+
+	.scroll {
+		width: 100%;
+		height: 1000px;
+		overflow: auto;
+	}
+
+	/* Table Styles */
+	table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    table-layout: fixed; /* Ensures equal spacing between columns */
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #6db6b9;
+    color: white;
+    font-weight: bold;
+}
+
+table td {
+    background-color: rgb(3, 2, 2);
+    color: white;
+}
+
+table tr:nth-child(even) td {
+    background-color: rgb(33, 29, 29);
+}
+
+table tr:hover {
+    background-color: rgb(82, 66, 66);
+}
+
+/* Ensure that the table cells have a consistent width for each column */
+table th, table td {
+    width: 12.5%; /* Each column will have equal width */
+}
+
+/* Styling for the hover effect on rows */
+table tr:hover {
+    background-color: rgb(82, 66, 66);
+}
+	table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #6db6b9;
+    color: white;
+    font-weight: bold;
+}
+
+table td {
+    background-color: rgb(3, 2, 2);
+    color: white;
+}
+
+table tr:nth-child(even) td {
+    background-color: rgb(33, 29, 29);
+}
+
+table tr:hover {
+    background-color: rgb(82, 66, 66);
+}
+
+/* Ensure that the table cells have a consistent width for each column */
+table th:nth-child(1),
+table td:nth-child(1) {
+    width: 15%;
+}
+
+table th:nth-child(2),
+table td:nth-child(2) {
+    width: 10%;
+}
+
+table th:nth-child(3),
+table td:nth-child(3) {
+    width: 20%;
+}
+
+table th:nth-child(4),
+table td:nth-child(4) {
+    width: 20%;
+}
+
+table th:nth-child(5),
+table td:nth-child(5) {
+    width: 10%;
+}
+
+table th:nth-child(6),
+table td:nth-child(6) {
+    width: 10%;
+}
+
+table th:nth-child(7),
+table td:nth-child(7) {
+    width: 10%;
+}
+
+table th:nth-child(8),
+table td:nth-child(8) {
+    width: 10%;
+}
+
+/* Styling for the hover effect on rows */
+table tr:hover {
+    background-color: rgb(82, 66, 66);
+}
+
+</style>
+
 
 </head>
 

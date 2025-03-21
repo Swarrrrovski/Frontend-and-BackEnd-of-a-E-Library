@@ -1,9 +1,11 @@
-<?php
+<?php 
 session_start();
 session_destroy(); // Destroy the session
 
 // Debugging
-echo "Redirecting to: ind.php";
-header("Location:ind.php");
+echo "Redirecting to: /libraryphp/ind.php";
+
+// Corrected path
+header("Location: /libraryphp/ind.php"); 
 exit();
 ?>

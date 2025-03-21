@@ -11,7 +11,7 @@
 
 	<style type="text/css">
 
-		.srch
+.srch
 		{
 			padding-left: 850px;
 
@@ -32,39 +32,45 @@
 }
 
 .sidenav {
-  height: 100%;
-  margin-top: 50px;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #222;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+    height: 100%;
+    margin-top: 50px;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #b0b0b0;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #444;
 }
 
 .sidenav a:hover {
-  color: white;
+    color: white;
+    background-color: #5d8f8f;
+    font-weight: bold;
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    color: white;
+    margin-left: 50px;
 }
+
 
 #main {
   transition: margin-left .5s;
@@ -93,8 +99,55 @@
 	opacity: .8;
 	color: white;
 }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    color: #fff;  /* Text color inside the table */
+}
+
+table th {
+    background-color: #6db6b9;
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+table tr:nth-child(even) {
+    background-color: #444;
+}
+
+table tr:nth-child(odd) {
+    background-color: #555;
+}
+
+table tr:hover {
+    background-color: #666;
+}
+
+table td {
+    font-size: 16px;
+    color: #ccc;
+}
+
+/* Hover effect for table rows */
+table tr:hover td {
+    background-color: #777;
+    color: #fff;
+}
 
 	</style>
+
+
 
 </head>
 <body>

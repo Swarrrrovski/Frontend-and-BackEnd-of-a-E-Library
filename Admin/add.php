@@ -11,107 +11,130 @@ session_start();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<style type="text/css">
+		
+		/* General Body Style */
 		body {
-    background-color: rgb(245, 245, 220); /* Beige background */
-    font-family: "Lato", sans-serif;
-    transition: background-color .5s;
-    color: #333; /* Darker color for better contrast on beige */
-  }
+			background-color: rgb(115, 137, 184); /* Beige background */
+			font-family: "Lato", sans-serif;
+			transition: background-color .5s;
+			color: #333; /* Darker text for better readability on beige */
+		}
 
-  .srch {
-    padding-left: 1000px;
-  }
+		/* Sidebar Styles */
+		.sidenav {
+			height: 100%;
+			margin-top: 50px;
+			width: 0;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			background-color: #333;
+			overflow-x: hidden;
+			transition: 0.5s;
+			padding-top: 60px;
+			box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.3);
+		}
 
-  .sidenav {
-    height: 100%;
-    margin-top: 50px;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #3e3e3e; /* Darker side nav */
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
+		.sidenav a {
+			padding: 10px 20px;
+			text-decoration: none;
+			font-size: 20px;
+			color: #b0b0b0;
+			display: block;
+			transition: 0.3s;
+			border-bottom: 1px solid #444;
+		}
 
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #d3c6aa; /* Lighter beige color for links */
-    display: block;
-    transition: 0.3s;
-  }
+		.sidenav a:hover {
+			color: white;
+			background-color: #5d8f8f;
+			font-weight: bold;
+		}
 
-  .sidenav a:hover {
-    color: #fff; /* White hover effect for links */
-  }
+		.sidenav .closebtn {
+			position: absolute;
+			top: 0;
+			right: 25px;
+			font-size: 36px;
+			color: white;
+			margin-left: 50px;
+		}
 
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-    color: #d3c6aa; /* Lighter beige for the close button */
-  }
+		#main {
+			transition: margin-left .5s;
+			padding: 16px;
+		}
 
-  #main {
-    transition: margin-left .5s;
-    padding: 16px;
-  }
+		/* Responsive Design for Sidebar */
+		@media screen and (max-height: 450px) {
+			.sidenav { padding-top: 15px; }
+			.sidenav a { font-size: 18px; }
+		}
 
-  @media screen and (max-height: 450px) {
-    .sidenav { padding-top: 15px; }
-    .sidenav a { font-size: 18px; }
-  }
+		/* Hover effect for menu items */
+		.h:hover {
+			color: white;
+			width: 300px;
+			height: 50px;
+			background-color: #555;
+		}
 
-  .img-circle {
-    margin-left: 20px;
-    border-radius: 50%; /* Ensures the image remains circular */
-  }
+		/* Center the main content */
+		.container {
+			text-align: center;
+			padding: 20px;
+		}
 
-  .h:hover {
-    color: white;
-    width: 300px;
-    height: 50px;
-    background-color: #555; /* Dark hover for menu items */
-  }
+		/* Styling the Form and Inputs */
+		.book {
+			width: 400px;
+			margin: 0px auto;
+			background-color: #fff; /* White background for form */
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(8, 9, 9, 0.01);
+		}
 
-  .book {
-    width: 400px;
-    margin: 0px auto;
-  }
+		.form-control {
+			background-color: #ddd; /* Light beige background for inputs */
+			color: #333; /* Darker text for readability */
+			height: 40px;
+			border: 1px solid #bca877; /* Subtle beige border */
+			border-radius: 5px;
+			padding: 5px;
+			margin-bottom: 10px;
+			width: 100%;
+		}
 
-  .form-control {
-    background-color: #ddd; /* Light beige form background */
-    color: #333; /* Darker text color for visibility */
-    height: 40px;
-    border: 1px solid #bca877; /* Subtle beige border for form fields */
-    border-radius: 5px;
-    padding: 5px;
-  }
+		.form-control::placeholder {
+			color: #666; /* Placeholder text color */
+		}
 
-  .form-control::placeholder {
-    color: #666; /* Placeholder color */
-  }
+		/* Button Styles */
+		.btn {
+			background-color: #bca877; /* Beige background for button */
+			color: #fff; /* White text */
+			border: none;
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+			width: 100%;
+		}
 
-  .btn {
-    background-color: #bca877; /* Beige button background */
-    color: #fff; /* White text on buttons */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
+		.btn:hover {
+			background-color: #8d745c; /* Darker beige on hover */
+		}
 
-  .btn:hover {
-    background-color: #8d745c; /* Darker beige on hover */
-  }
+		/* Responsive Styling for Form */
+		@media screen and (max-width: 768px) {
+			.book {
+				width: 90%; /* Responsive width */
+			}
+		}
+	
 
 	</style>
 
@@ -147,7 +170,7 @@ session_start();
 <div id="main">
   <span style="font-size:30px;cursor:pointer; color: black;" onclick="openNav()">&#9776; open</span>
   <div class="container" style="text-align: center;">
-    <h2 style="color:black; font-family: Lucida Console; text-align: center"><b>Add New Books</b></h2>
+    <h2 style="color:black; font-family: Lucida Console; text-align: center"><b>ADD NEW BOOKS</b></h2>
     <br><br>
     <form class="book" action="" method="post">
         

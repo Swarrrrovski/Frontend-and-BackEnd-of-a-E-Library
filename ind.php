@@ -1,4 +1,8 @@
- 
+
+<?php
+    // Start PHP session if needed
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,11 +41,11 @@
             <h5>Online Learning Resources</h5>
         </div>
         <nav class="navbar">
-            <a href="#Home">Home</a>
-            <a href="user_login.php">User</a>
-            <a href=".admin_login.php">Admin</a>
+            <a href="ind.php">Home</a>
+            <a href="./User/user_login.php">User</a>
+            <a href="./Admin/admin_login.php">Admin</a>
             <a href="Books.php">Books</a>
-            <a href="Feedbackform.html">Contact Us</a>
+           
         </nav>
     </header>
     
@@ -50,16 +54,24 @@
         <br class="spacing">
         <br>
         <div class="slider">
-            <div class="slide"><p>"The only limit to our realization of tomorrow is our doubts of today."<br><strong>- Franklin D. Roosevelt</strong></p></div>
-            <div class="slide"><p>"Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment."<br><strong>- Buddha</strong></p></div>
-            <div class="slide"><p>"It does not matter how slowly you go as long as you do not stop."<br><strong>- Confucius</strong></p></div>
-            <div class="slide"><p>"Success is not final, failure is not fatal: it is the courage to continue that counts."<br><strong>- Winston Churchill</strong></p></div>
-            <div class="slide"><p>"Believe you can and you're halfway there."<br><strong>- Theodore Roosevelt</strong></p></div>
-            <div class="slide"><p>"Opportunities don't happen, you create them."<br><strong>- Chris Grosser</strong></p></div>
-            <div class="slide"><p>"The best way to predict the future is to create it."<br><strong>- Peter Drucker</strong></p></div>
-            <div class="slide"><p>"Don’t let yesterday take up too much of today."<br><strong>- Will Rogers</strong></p></div>
-            <div class="slide"><p>"You miss 100% of the shots you don’t take."<br><strong>- Wayne Gretzky</strong></p></div>
-            <div class="slide"><p>"Happiness is not something ready-made. It comes from your own actions."<br><strong>- Dalai Lama</strong></p></div>
+            <?php
+                $quotes = [
+                    "The only limit to our realization of tomorrow is our doubts of today." => "Franklin D. Roosevelt",
+                    "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment." => "Buddha",
+                    "It does not matter how slowly you go as long as you do not stop." => "Confucius",
+                    "Success is not final, failure is not fatal: it is the courage to continue that counts." => "Winston Churchill",
+                    "Believe you can and you're halfway there." => "Theodore Roosevelt",
+                    "Opportunities don't happen, you create them." => "Chris Grosser",
+                    "The best way to predict the future is to create it." => "Peter Drucker",
+                    "Don’t let yesterday take up too much of today." => "Will Rogers",
+                    "You miss 100% of the shots you don’t take." => "Wayne Gretzky",
+                    "Happiness is not something ready-made. It comes from your own actions." => "Dalai Lama"
+                ];
+
+                foreach ($quotes as $quote => $author) {
+                    echo "<div class='slide'><p>\"$quote\"<br><strong>- $author</strong></p></div>";
+                }
+            ?>
         </div>
     </section>
 
@@ -93,7 +105,7 @@
     <script>
         $(document).ready(function(){
             $('.slider').slick({
-                dots: false, // Hide dots
+                dots: false,
                 infinite: true,
                 speed: 500,
                 slidesToShow: 1,

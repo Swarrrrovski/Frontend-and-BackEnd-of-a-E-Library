@@ -1,12 +1,13 @@
 .role-selection {
-    background: rgba(255, 255, 255, 0.65);
+    background: white;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.678);
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 220px;
     margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 .role-selection h1 {
@@ -41,7 +42,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: url(1.jpg);
+    background: #6199d6;
     background-size: cover;
     background-position: center;
     display: flex;
