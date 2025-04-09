@@ -1,8 +1,7 @@
 <?php
-// Start the session
+
 session_start();
 
-// Check if the admin is logged in, otherwise redirect to login page (ind.php)
 if (!isset($_SESSION['login_user'])) {
     header("Location: ind.php");
     exit();

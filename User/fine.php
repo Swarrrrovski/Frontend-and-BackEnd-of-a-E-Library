@@ -160,7 +160,7 @@ session_start();
                             <td>{$row['issue']}</td>
                             <td>{$row['return']}</td>
                             <td>₹{$fineAmount}</td>
-                            <td>₹{$overdueDays}</td>
+                            <td>{$overdueDays}</td>
                             
 
                           </tr>";

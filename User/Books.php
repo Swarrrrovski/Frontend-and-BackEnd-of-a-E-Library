@@ -10,8 +10,7 @@
 	<title>Books</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Books.css">
-    <script src="Books.js"></script>
-	
+    <script src="Books.js"></script>	
 
 </head>
 <body>
